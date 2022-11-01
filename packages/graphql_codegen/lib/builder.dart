@@ -116,7 +116,7 @@ class GraphQLBuilder extends Builder {
       final packageName = e.key;
       final paths = e.value;
       for (final path in paths) {
-        final file = File('${_getPackageLocalDirectory(packageName)})$path');
+        final file = File('${await _getPackageLocalDirectory(packageName)})$path');
         print('boi: $path');
         print(file.existsSync());
         print(file.path);
