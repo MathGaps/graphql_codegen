@@ -62,7 +62,7 @@ class GraphQLBuilder extends Builder {
       // print(
       //   '${line.replaceFirst('core_frontend:', '')}src/domain/graph/schema.graphql',
       // );
-      return line.replaceFirst('$name:', '');
+      return line.replaceFirst('$name:', '').replaceFirst('file://', '');
       // final f = File.fromUri(
       //   Uri(
       //     scheme: 'file',
@@ -116,7 +116,8 @@ class GraphQLBuilder extends Builder {
       final packageName = e.key;
       final paths = e.value;
       for (final path in paths) {
-        final file = File('${await _getPackageLocalDirectory(packageName)}$path');
+        final file = File.fromUri(
+            Uri(scheme: 'file', path: '${await _getPackageLocalDirectory(packageName)}$path'));
         print('boi: $path');
         print(file.existsSync());
         print(file.path);
