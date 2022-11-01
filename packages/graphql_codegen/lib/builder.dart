@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:build/build.dart';
 import 'package:built_collection/built_collection.dart';
@@ -21,8 +22,7 @@ class GraphQLBuilder extends Builder {
   static final wildcardPattern = new RegExp(r"[\[\]\?\*]+");
 
   /// A static method to initialize the builder.
-  static GraphQLBuilder builder(BuilderOptions options) =>
-      GraphQLBuilder(options);
+  static GraphQLBuilder builder(BuilderOptions options) => GraphQLBuilder(options);
 
   GraphQLBuilder(this.options)
       : config = GraphQLCodegenConfig.fromJson(
@@ -45,11 +45,42 @@ class GraphQLBuilder extends Builder {
     return path;
   }
 
+  Future<String> _getPackageLocalDirectory(String name) async {
+    final file = File('${Directory.current.path}/.packages');
+    if (file.existsSync()) {
+      final lines = await file.readAsLines();
+
+      final line = lines.firstWhere((e) => e.startsWith('$name:'));
+
+      // final d =
+      //     Directory('${line.replaceFirst('core_frontend:', '')}src/domain/graph/schema.graphql');
+      // final d = Directory.fromUri(Uri(
+      //     scheme: 'file',
+      //     path: '${line.replaceFirst('core_frontend:', '').replaceFirst('file://', '')}src/graph'));
+      // print(d.existsSync());
+      // print(d.listSync());
+      // print(
+      //   '${line.replaceFirst('core_frontend:', '')}src/domain/graph/schema.graphql',
+      // );
+      return line;
+      // final f = File.fromUri(
+      //   Uri(
+      //     scheme: 'file',
+      //     path:
+      //         '${line.replaceFirst('core_frontend:', '').replaceFirst('file://', '')}src/graph/schema.graphql',
+      //   ),
+      // );
+
+      // print(await f.readAsString());
+    } else {
+      throw FileSystemException('`.packages` file not found. Please run flutter pub get first');
+    }
+  }
+
   @override
   FutureOr<void> build(BuildStep buildStep) async {
     final scope = (config.scopes).whereType<String?>().firstWhere(
-          (element) =>
-              element != null && Glob(element).matches(buildStep.inputId.path),
+          (element) => element != null && Glob(element).matches(buildStep.inputId.path),
           orElse: () => null,
         );
     if (scope == null) {
@@ -67,6 +98,31 @@ class GraphQLBuilder extends Builder {
         )
         .map((event) => MapEntry(event.key, transform(config, event.value)))
         .toList();
+
+    // Get scopes outside of the main library
+    final remoteScopes = config.scopes.where((e) => e.startsWith('package:'));
+    final remoteScopesMap = <String, List<String>>{};
+    final packageRegex = RegExp(r'^package:(\w+)\/(.*)');
+    for (final s in remoteScopes) {
+      final match = packageRegex.firstMatch(s);
+      if (match != null) {
+        final packageName = match.group(1);
+        final path = match.group(2);
+        remoteScopesMap[packageName!] ??= <String>[];
+        remoteScopesMap[packageName]!.add(path!);
+      }
+    }
+    for (final e in remoteScopesMap.entries) {
+      final packageName = e.key;
+      final paths = e.value;
+      for (final path in paths) {
+        final file = File('${_getPackageLocalDirectory(packageName)})$path');
+        print('boi: $path');
+        print(file.existsSync());
+        print(file.path);
+      }
+    }
+
     final result = await generate<AssetId>(
       SchemaConfig<AssetId>(
         entries: BuiltMap.of(Map.fromEntries(entries)),
@@ -125,9 +181,7 @@ class GraphQLBuilder extends Builder {
         '{{dir}}/{{file}}.graphql': [
           p.join('{{dir}}', config.outputDirectory, '{{file}}.graphql.dart')
         ],
-        '{{dir}}/{{file}}.gql': [
-          p.join('{{dir}}', config.outputDirectory, '{{file}}.gql.dart')
-        ]
+        '{{dir}}/{{file}}.gql': [p.join('{{dir}}', config.outputDirectory, '{{file}}.gql.dart')]
       };
     }
     return {
