@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'config.g.dart';
 
 enum GraphQLCodegenConfigClient {
@@ -42,6 +43,7 @@ class GraphQLCodegenConfig {
   final List<String> extraKeywords;
   final String outputDirectory;
   final bool disableContextReplacement;
+  final String? schema;
 
   GraphQLCodegenConfig({
     this.clients = const {},
@@ -55,6 +57,7 @@ class GraphQLCodegenConfig {
     this.namingSeparator = r"$",
     this.extraKeywords = const [],
     this.outputDirectory = '.',
+    this.schema,
   });
 
   @override

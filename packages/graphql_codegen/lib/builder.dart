@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:build/build.dart';
 import 'package:built_collection/built_collection.dart';
@@ -10,6 +9,7 @@ import 'package:glob/glob.dart';
 import 'package:gql/language.dart';
 import 'package:graphql_codegen/graphql_codegen.dart';
 import 'package:graphql_codegen/src/transform/transform.dart';
+import 'package:package_file_loader/package_file_loader.dart';
 import 'package:path/path.dart' as path;
 
 final p = path.Context(style: path.Style.posix);
@@ -45,38 +45,6 @@ class GraphQLBuilder extends Builder {
     return path;
   }
 
-  Future<String> _getPackageLocalDirectory(String name) async {
-    final file = File('${Directory.current.path}/.packages');
-    if (file.existsSync()) {
-      final lines = await file.readAsLines();
-
-      final line = lines.firstWhere((e) => e.startsWith('$name:'));
-
-      // final d =
-      //     Directory('${line.replaceFirst('core_frontend:', '')}src/domain/graph/schema.graphql');
-      // final d = Directory.fromUri(Uri(
-      //     scheme: 'file',
-      //     path: '${line.replaceFirst('core_frontend:', '').replaceFirst('file://', '')}src/graph'));
-      // print(d.existsSync());
-      // print(d.listSync());
-      // print(
-      //   '${line.replaceFirst('core_frontend:', '')}src/domain/graph/schema.graphql',
-      // );
-      return line.replaceFirst('$name:', '').replaceFirst('file://', '');
-      // final f = File.fromUri(
-      //   Uri(
-      //     scheme: 'file',
-      //     path:
-      //         '${line.replaceFirst('core_frontend:', '').replaceFirst('file://', '')}src/graph/schema.graphql',
-      //   ),
-      // );
-
-      // print(await f.readAsString());
-    } else {
-      throw FileSystemException('`.packages` file not found. Please run flutter pub get first');
-    }
-  }
-
   @override
   FutureOr<void> build(BuildStep buildStep) async {
     final scope = (config.scopes).whereType<String?>().firstWhere(
@@ -99,29 +67,16 @@ class GraphQLBuilder extends Builder {
         .map((event) => MapEntry(event.key, transform(config, event.value)))
         .toList();
 
-    // Get scopes outside of the main library
-    final remoteScopes = config.scopes.where((e) => e.startsWith('package:'));
-    final remoteScopesMap = <String, List<String>>{};
-    final packageRegex = RegExp(r'^package:(\w+)\/(.*)');
-    for (final s in remoteScopes) {
-      final match = packageRegex.firstMatch(s);
-      if (match != null) {
-        final packageName = match.group(1);
-        final path = match.group(2);
-        remoteScopesMap[packageName!] ??= <String>[];
-        remoteScopesMap[packageName]!.add(path!);
-      }
-    }
-    for (final e in remoteScopesMap.entries) {
-      final packageName = e.key;
-      final paths = e.value;
-      for (final path in paths) {
-        final file = File.fromUri(
-            Uri(scheme: 'file', path: '${await _getPackageLocalDirectory(packageName)}$path'));
-        print('boi: $path');
-        print(file.existsSync());
-        print(file.path);
-      }
+    if (config.schema != null) {
+      final file = await loadPackageFileAsAsset(config.schema!);
+      entries.add(
+        MapEntry(
+          file.assetId,
+          parseString(
+            await file.file.readAsString(),
+          ),
+        ),
+      );
     }
 
     final result = await generate<AssetId>(
