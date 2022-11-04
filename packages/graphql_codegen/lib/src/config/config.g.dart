@@ -45,7 +45,7 @@ GraphQLCodegenConfig _$GraphQLCodegenConfigFromJson(Map<String, dynamic> json) =
       extraKeywords:
           (json['extraKeywords'] as List<dynamic>?)?.map((e) => e as String).toList() ?? const [],
       outputDirectory: json['outputDirectory'] as String? ?? '.',
-      schema: json['schema'] as String?,
+      externalSchema: json['externalSchema'] as String?,
     );
 
 Map<String, dynamic> _$GraphQLCodegenConfigToJson(GraphQLCodegenConfig instance) =>
@@ -61,7 +61,7 @@ Map<String, dynamic> _$GraphQLCodegenConfigToJson(GraphQLCodegenConfig instance)
       'extraKeywords': instance.extraKeywords,
       'outputDirectory': instance.outputDirectory,
       'disableContextReplacement': instance.disableContextReplacement,
-      'schema': instance.schema,
+      'externalSchema': instance.externalSchema,
     };
 
 const _$GraphQLCodegenConfigClientEnumMap = {

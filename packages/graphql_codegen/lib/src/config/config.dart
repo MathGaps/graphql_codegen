@@ -43,7 +43,7 @@ class GraphQLCodegenConfig {
   final List<String> extraKeywords;
   final String outputDirectory;
   final bool disableContextReplacement;
-  final String? schema;
+  final String? externalSchema;
 
   GraphQLCodegenConfig({
     this.clients = const {},
@@ -57,7 +57,7 @@ class GraphQLCodegenConfig {
     this.namingSeparator = r"$",
     this.extraKeywords = const [],
     this.outputDirectory = '.',
-    this.schema,
+    this.externalSchema,
   });
 
   @override

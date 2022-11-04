@@ -17,8 +17,7 @@ class _Package {
 
   _Package(this.import, this.alias);
 
-  operator ==(Object other) =>
-      other is _Package && other.alias == alias && other.import == import;
+  operator ==(Object other) => other is _Package && other.alias == alias && other.import == import;
 
   @override
   int get hashCode => import.hashCode & alias.hashCode;
@@ -42,9 +41,8 @@ class PrintContext<TContext extends Context> {
     final currentPath = p.dirname(currentFile);
     final imports = [
       ..._packages.map((e) => Directive.import(e.import, as: e.alias)),
-      ..._dependencies
-          .where((element) => element != currentFile)
-          .map((e) => Directive.import(p.relative(e, from: currentPath))),
+      ..._dependencies.where((element) => element != currentFile).map(
+          (e) => Directive.import(e.startsWith('package:') ? e : p.relative(e, from: currentPath))),
     ];
     imports.sort((e1, e2) => e1.url.compareTo(e2.url));
     return [
@@ -94,8 +92,7 @@ class PrintContext<TContext extends Context> {
   }
 
   void addDependency(Name name) {
-    final lookupPath =
-        context.schema.lookupPathFromDefinitionNode(name.baseNameSegment.node);
+    final lookupPath = context.schema.lookupPathFromDefinitionNode(name.baseNameSegment.node);
     if (lookupPath == null) return;
     _dependencies.add(lookupPath);
   }

@@ -1,13 +1,13 @@
 import 'dart:collection';
 
+import 'package:build/build.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:gql/ast.dart';
 import 'package:graphql_codegen/src/config/config.dart';
 import 'package:graphql_codegen/src/errors.dart';
 import 'package:graphql_codegen/src/transform/add_typename_transforming_visitor.dart';
 
-class ContextFragment<TKey extends Object>
-    extends Context<TKey, TypeDefinitionNode> {
+class ContextFragment<TKey extends Object> extends Context<TKey, TypeDefinitionNode> {
   final FragmentDefinitionNode? fragment;
   final Name path;
 
@@ -82,8 +82,7 @@ class ContextFragment<TKey extends Object>
   }
 
   @override
-  Iterable<ContextProperty> get variables =>
-      fragment == null ? [] : _variables.values;
+  Iterable<ContextProperty> get variables => fragment == null ? [] : _variables.values;
 
   void _addArgumentVariable(VariableNode argument, TypeNode type) {
     final fieldType = schema.lookupTypeDefinitionFromTypeNode(type);
@@ -125,8 +124,7 @@ class ContextFragment<TKey extends Object>
       return;
     }
     if (argument is ObjectValueNode && type is NamedTypeNode) {
-      final typeDef =
-          schema.lookupType<InputObjectTypeDefinitionNode>(type.name);
+      final typeDef = schema.lookupType<InputObjectTypeDefinitionNode>(type.name);
       final fields = typeDef?.fields ?? [];
       for (final f in argument.fields) {
         final fieldType = fields
@@ -208,7 +206,12 @@ class Schema<TKey extends Object> {
   String? lookupPathFromDefinitionNode(DefinitionNode node) {
     for (final entry in entries.entries) {
       if (entry.value.definitions.contains(node)) {
-        return lookupPath(entry.key);
+        final key = entry.key;
+        if (key is AssetId && key.package.startsWith('package:')) {
+          return '${key.package}/${key.path}.dart';
+        } else {
+          return lookupPath(key);
+        }
       }
     }
     return null;
@@ -218,9 +221,7 @@ class Schema<TKey extends Object> {
     var defs = _cachedTypeDefinitionsMap;
     if (defs == null) {
       defs = _cachedTypeDefinitionsMap = Map.fromEntries(
-        definitions
-            .whereType<TypeDefinitionNode>()
-            .map((e) => MapEntry(e.name.value, e)),
+        definitions.whereType<TypeDefinitionNode>().map((e) => MapEntry(e.name.value, e)),
       );
     }
 
@@ -242,9 +243,8 @@ class Schema<TKey extends Object> {
 
     if (typeDefinition is InterfaceTypeDefinitionNode) {
       return definitions.whereType<ObjectTypeDefinitionNode>().where(
-            (element) => element.interfaces
-                .where((element) => element.name.value == name.value)
-                .isNotEmpty,
+            (element) =>
+                element.interfaces.where((element) => element.name.value == name.value).isNotEmpty,
           );
     }
 
@@ -274,8 +274,7 @@ class Schema<TKey extends Object> {
           orElse: () => null,
         );
 
-    final typeName =
-        opNode?.type.name ?? _operationTypeToDefaultClass(operationType);
+    final typeName = opNode?.type.name ?? _operationTypeToDefaultClass(operationType);
 
     return lookupType(typeName);
   }
@@ -298,8 +297,7 @@ class Schema<TKey extends Object> {
     return lookupFieldDefinitionNode(onType, node)?.type;
   }
 
-  FieldDefinitionNode? lookupFieldDefinitionNode(
-      TypeDefinitionNode onType, NameNode field) {
+  FieldDefinitionNode? lookupFieldDefinitionNode(TypeDefinitionNode onType, NameNode field) {
     List<FieldDefinitionNode> fields;
     if (onType is ObjectTypeDefinitionNode) {
       fields = onType.fields;
@@ -310,12 +308,11 @@ class Schema<TKey extends Object> {
     } else {
       return null;
     }
-    final currentFieldDefinition = [...fields, ..._INTROSPECTION_FIELDS]
-        .whereType<FieldDefinitionNode?>()
-        .firstWhere(
-          (element) => element != null && element.name.value == field.value,
-          orElse: () => null,
-        );
+    final currentFieldDefinition =
+        [...fields, ..._INTROSPECTION_FIELDS].whereType<FieldDefinitionNode?>().firstWhere(
+              (element) => element != null && element.name.value == field.value,
+              orElse: () => null,
+            );
     return currentFieldDefinition;
   }
 
@@ -480,9 +477,7 @@ abstract class Context<TKey extends Object, TType extends TypeDefinitionNode> {
   String get filePath => schema.lookupPath(key);
 
   Iterable<ContextFragment<TKey>> get fragments {
-    return _fragments
-        .map((e) => _allContexts[e]!)
-        .whereType<ContextFragment<TKey>>();
+    return _fragments.map((e) => _allContexts[e]!).whereType<ContextFragment<TKey>>();
   }
 
   ContextOperation<TKey>? get extendsContextOperation {
@@ -628,8 +623,7 @@ abstract class Context<TKey extends Object, TType extends TypeDefinitionNode> {
   }
 
   void addVariable(ContextProperty property) {
-    _variables[property._key] =
-        _variables[property._key]?.merge(property) ?? property;
+    _variables[property._key] = _variables[property._key]?.merge(property) ?? property;
   }
 
   void addArgument(ValueNode argument, TypeNode argumentType) {}
@@ -679,23 +673,20 @@ abstract class Context<TKey extends Object, TType extends TypeDefinitionNode> {
     throw new StateError('withNameAndType not supported');
   }
 
-  ContextProperty? get typenameProperty =>
-      properties.whereType<ContextProperty?>().firstWhere(
-            (element) => element?.isTypenameField == true,
-            orElse: () => null,
-          );
+  ContextProperty? get typenameProperty => properties.whereType<ContextProperty?>().firstWhere(
+        (element) => element?.isTypenameField == true,
+        orElse: () => null,
+      );
 
   Iterable<Context> get possibleTypes => _possibleTypes;
 
-  Iterable<FragmentDefinitionNode> get fragmentDependencies =>
-      [..._fragmentDependencies];
+  Iterable<FragmentDefinitionNode> get fragmentDependencies => [..._fragmentDependencies];
 
   void addSelectionSet(SelectionSetNode node) {
     _selections.addAll(node.selections);
   }
 
-  Context<TKey, TypeDefinitionNode> get resolvedContext =>
-      replacementContext ?? this;
+  Context<TKey, TypeDefinitionNode> get resolvedContext => replacementContext ?? this;
 
   Context<TKey, TypeDefinitionNode>? get replacementContext {
     if (config.disableContextReplacement) return null;
@@ -711,18 +702,13 @@ abstract class Context<TKey extends Object, TType extends TypeDefinitionNode> {
       return null;
     }
     final spreadNodes = _selections.whereType<FragmentSpreadNode>();
-    Set<String> spreads = _selections
-        .whereType<FragmentSpreadNode>()
-        .map((e) => e.name.value)
-        .toSet();
+    Set<String> spreads =
+        _selections.whereType<FragmentSpreadNode>().map((e) => e.name.value).toSet();
     if (spreads.length != 1) return null;
-    Set<String> fields = _selections
-        .whereType<FieldNode>()
-        .map((e) => e.alias?.value ?? e.name.value)
-        .toSet();
+    Set<String> fields =
+        _selections.whereType<FieldNode>().map((e) => e.alias?.value ?? e.name.value).toSet();
     if (fields.length > 1) return null;
-    if (fields.length == 1 &&
-        (!config.addTypename || fields.first != typenameFieldName)) {
+    if (fields.length == 1 && (!config.addTypename || fields.first != typenameFieldName)) {
       return null;
     }
     final fragmentDef = schema.lookupFragmentEnforced(spreadNodes.first.name);
@@ -736,8 +722,7 @@ abstract class Context<TKey extends Object, TType extends TypeDefinitionNode> {
   }
 }
 
-class ContextRoot<TKey extends Object>
-    extends Context<TKey, TypeDefinitionNode> {
+class ContextRoot<TKey extends Object> extends Context<TKey, TypeDefinitionNode> {
   ContextRoot({
     required TKey key,
     required GraphQLCodegenConfig config,
@@ -754,14 +739,11 @@ class ContextRoot<TKey extends Object>
   Iterable<ContextOperation> get contextOperations =>
       _contexts.values.whereType<ContextOperation>();
 
-  Iterable<ContextFragment> get contextFragments =>
-      _contexts.values.whereType<ContextFragment>();
+  Iterable<ContextFragment> get contextFragments => _contexts.values.whereType<ContextFragment>();
 
-  Iterable<ContextEnum> get contextEnums =>
-      _contexts.values.whereType<ContextEnum>();
+  Iterable<ContextEnum> get contextEnums => _contexts.values.whereType<ContextEnum>();
 
-  Iterable<ContextInput> get contextInputs =>
-      _contexts.values.whereType<ContextInput>();
+  Iterable<ContextInput> get contextInputs => _contexts.values.whereType<ContextInput>();
 
   Iterable<OperationDefinitionNode> get operations =>
       schema.entries[key]?.definitions.whereType<OperationDefinitionNode>() ??
@@ -771,8 +753,7 @@ class ContextRoot<TKey extends Object>
     final definingOperation = schema.lookupOperationType(OperationType.query) ??
         schema.lookupOperationType(OperationType.mutation) ??
         schema.lookupOperationType(OperationType.subscription);
-    return schema.entries[key]?.definitions.contains(definingOperation) ??
-        false;
+    return schema.entries[key]?.definitions.contains(definingOperation) ?? false;
   }
 
   final bool isDefinitionContext = false;
@@ -806,8 +787,7 @@ class ContextRoot<TKey extends Object>
   NameNode get currentTypeName => currentType.name;
 }
 
-class ContextEnum<TKey extends Object>
-    extends Context<TKey, EnumTypeDefinitionNode> {
+class ContextEnum<TKey extends Object> extends Context<TKey, EnumTypeDefinitionNode> {
   final Name path;
   ContextEnum({
     required Context<TKey, TypeDefinitionNode> parent,
@@ -831,8 +811,7 @@ class ContextEnum<TKey extends Object>
   final bool isDefinitionContext = true;
 }
 
-class ContextInput<TKey extends Object>
-    extends Context<TKey, InputObjectTypeDefinitionNode> {
+class ContextInput<TKey extends Object> extends Context<TKey, InputObjectTypeDefinitionNode> {
   final Name path;
   ContextInput({
     required Context<TKey, TypeDefinitionNode> parent,
@@ -858,8 +837,7 @@ class ContextInput<TKey extends Object>
   final bool isDefinitionContext = true;
 }
 
-class ContextOperation<TKey extends Object>
-    extends Context<TKey, TypeDefinitionNode> {
+class ContextOperation<TKey extends Object> extends Context<TKey, TypeDefinitionNode> {
   final Name path;
   ContextOperation({
     required Context<TKey, TypeDefinitionNode> parent,
@@ -981,8 +959,7 @@ abstract class NameSegment {
   int get hashCode => _key.hashCode;
 }
 
-abstract class BaseNameSegment<TDefinitionNode extends DefinitionNode>
-    extends NameSegment {
+abstract class BaseNameSegment<TDefinitionNode extends DefinitionNode> extends NameSegment {
   final TDefinitionNode node;
   BaseNameSegment(NameNode name, this.node) : super(name);
 }

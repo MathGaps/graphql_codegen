@@ -67,11 +67,11 @@ class GraphQLBuilder extends Builder {
         .map((event) => MapEntry(event.key, transform(config, event.value)))
         .toList();
 
-    if (config.schema != null) {
-      final file = await loadPackageFileAsAsset(config.schema!);
+    if (config.externalSchema != null) {
+      final file = await loadPackageFileAsAsset(config.externalSchema!);
       entries.add(
         MapEntry(
-          file.assetId,
+          AssetId('package:${file.assetId.package}', file.assetId.path),
           parseString(
             await file.file.readAsString(),
           ),

@@ -10,8 +10,7 @@ class ContextVisitor extends RecursiveVisitor {
   @override
   void visitVariableDefinitionNode(VariableDefinitionNode node) {
     final typeNodeForField = node.type;
-    final fieldType =
-        context.schema.lookupTypeDefinitionFromTypeNode(typeNodeForField);
+    final fieldType = context.schema.lookupTypeDefinitionFromTypeNode(typeNodeForField);
 
     if (fieldType == null) {
       throw InvalidGraphQLDocumentError(
@@ -94,8 +93,7 @@ class ContextVisitor extends RecursiveVisitor {
   void visitOperationDefinitionNode(OperationDefinitionNode node) {
     final typeNode = context.schema.lookupOperationType(node.type);
     if (typeNode == null) {
-      throw InvalidGraphQLDocumentError(
-          "Failed to find operation type for ${node.type}");
+      throw InvalidGraphQLDocumentError("Failed to find operation type for ${node.type}");
     }
     node.visitChildren(
       ContextVisitor(
@@ -131,8 +129,7 @@ class ContextVisitor extends RecursiveVisitor {
       tempFragmentContext = context;
     } else {
       tempFragmentContext = context.rootContext();
-      ContextVisitor(context: tempFragmentContext)
-          .visitFragmentDefinitionNode(fragmentDef);
+      ContextVisitor(context: tempFragmentContext).visitFragmentDefinitionNode(fragmentDef);
     }
 
     // If the fragment type condition exactly matches the current type,
@@ -149,20 +146,15 @@ class ContextVisitor extends RecursiveVisitor {
     final typeCondition = fragmentDef.typeCondition;
 
     // Find concrete types of the type conditions.
-    final typeConditionConcreteTypes = context.schema
-        .lookupConcreteTypes(typeCondition.on.name)
-        .map((e) => e.name)
-        .toSet();
+    final typeConditionConcreteTypes =
+        context.schema.lookupConcreteTypes(typeCondition.on.name).map((e) => e.name).toSet();
 
     // Find concrete types of the current type.
-    final currentTypeConcreteTypes = context.schema
-        .lookupConcreteTypes(context.currentType.name)
-        .map((e) => e.name)
-        .toSet();
+    final currentTypeConcreteTypes =
+        context.schema.lookupConcreteTypes(context.currentType.name).map((e) => e.name).toSet();
 
     // Look-up the intersection of concrete types.
-    final concreteIntersection =
-        typeConditionConcreteTypes.intersection(currentTypeConcreteTypes);
+    final concreteIntersection = typeConditionConcreteTypes.intersection(currentTypeConcreteTypes);
 
     // If there's no intersection, return.
     if (concreteIntersection.isEmpty) {
@@ -181,8 +173,7 @@ class ContextVisitor extends RecursiveVisitor {
       //
       // This happens when a fragment is on an abstract type but has
       // itself a fragment spread on the relevant concrete type.
-      final existingFragmentName =
-          tempFragmentContext.contextFragmentNameOrFallback(
+      final existingFragmentName = tempFragmentContext.contextFragmentNameOrFallback(
         typedFragmentName,
         fragmentName,
       );
@@ -195,15 +186,13 @@ class ContextVisitor extends RecursiveVisitor {
     for (final typeName in concreteIntersection) {
       final typeNode = context.schema.lookupType(typeName);
       if (typeNode == null) {
-        throw InvalidGraphQLDocumentError(
-            "Failed to find definition for type ${typeName.value}");
+        throw InvalidGraphQLDocumentError("Failed to find definition for type ${typeName.value}");
       }
       final typedFragmentName = fragmentName.withSegment(
         TypeNameSegment(typeName),
       );
 
-      final existingFragmentName =
-          tempFragmentContext.contextFragmentNameOrFallback(
+      final existingFragmentName = tempFragmentContext.contextFragmentNameOrFallback(
         typedFragmentName,
         fragmentName,
       );
@@ -233,23 +222,17 @@ class ContextVisitor extends RecursiveVisitor {
     final typeCondition = node.typeCondition;
     // If we do not have a type condition, inline the selection set.
     // TODO support directives
-    if (typeCondition == null ||
-        typeCondition.on.name == context.currentType.name) {
+    if (typeCondition == null || typeCondition.on.name == context.currentType.name) {
       node.selectionSet.visitChildren(this);
       return;
     }
 
-    final typeConditionConcreteTypes = context.schema
-        .lookupConcreteTypes(typeCondition.on.name)
-        .map((e) => e.name)
-        .toSet();
-    final currentTypeConcreteTypes = context.schema
-        .lookupConcreteTypes(context.currentType.name)
-        .map((e) => e.name)
-        .toSet();
+    final typeConditionConcreteTypes =
+        context.schema.lookupConcreteTypes(typeCondition.on.name).map((e) => e.name).toSet();
+    final currentTypeConcreteTypes =
+        context.schema.lookupConcreteTypes(context.currentType.name).map((e) => e.name).toSet();
 
-    final concreteIntersection =
-        typeConditionConcreteTypes.intersection(currentTypeConcreteTypes);
+    final concreteIntersection = typeConditionConcreteTypes.intersection(currentTypeConcreteTypes);
 
     if (concreteIntersection.isEmpty) {
       return;
@@ -263,8 +246,7 @@ class ContextVisitor extends RecursiveVisitor {
     for (final typeName in concreteIntersection) {
       final typeNode = context.schema.lookupType(typeName);
       if (typeNode == null) {
-        throw InvalidGraphQLDocumentError(
-            "Failed to find definition for type ${typeName.value}");
+        throw InvalidGraphQLDocumentError("Failed to find definition for type ${typeName.value}");
       }
       final c = context.withNameAndType(
         TypeNameSegment(typeNode.name),
