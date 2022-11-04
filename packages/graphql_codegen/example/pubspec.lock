@@ -381,7 +381,7 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.6.0"
+    version: "4.7.0"
   logging:
     dependency: transitive
     description:
@@ -451,7 +451,7 @@ packages:
       name: package_file_loader
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.1"
+    version: "0.1.4"
   path:
     dependency: transitive
     description:
