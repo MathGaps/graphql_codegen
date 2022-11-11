@@ -67,6 +67,7 @@ class GraphQLBuilder extends Builder {
         .map((event) => MapEntry(event.key, transform(config, event.value)))
         .toList();
 
+    // TODO(samuel): Modify here
     if (config.externalSchema != null) {
       final file = await loadPackageFileAsAsset(config.externalSchema!);
       entries.add(
