@@ -4,9 +4,8 @@ import 'package:graphql_codegen/src/config/config.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
-void testTransform(GraphQLCodegenConfig config, String p1, String p2) => expect(
-    printNode(transform(config, parseString(p1))),
-    equals(printNode(parseString(p2))));
+void testTransform(GraphQLCodegenConfig config, String p1, String p2) =>
+    expect(printNode(transform(config, parseString(p1))), equals(printNode(parseString(p2))));
 
 void main() {
   group("addTypename", () {
@@ -235,4 +234,34 @@ void main() {
       testTransform(config, doc1, doc2);
     });
   });
+
+  group(
+    "clientDirectives",
+    () {
+      // TODO: Test each location directives can be added in an operation doc
+      test("will remove client directives", () {
+        final config = GraphQLCodegenConfig(
+          clientDirectives: ["bruh", "imdead"],
+          addTypename: false,
+        );
+        final doc1 = """
+      type Query @bruh {
+        test: String
+      }
+      query Foobar @imdead(extent: "fully") {
+        test @notme
+      }
+      """;
+        final doc2 = """
+      type Query {
+        test: String
+      }
+      query Foobar {
+        test @notme
+      }
+      """;
+        testTransform(config, doc1, doc2);
+      });
+    },
+  );
 }
