@@ -5,9 +5,8 @@ import 'package:graphql_codegen/src/printer/base/constants.dart';
 import 'package:graphql_codegen/src/printer/context.dart';
 
 List<Spec> printEnum(PrintContext<ContextEnum> context) {
-  final typeDef = context.context.currentType;
   final values = {
-    for (final v in typeDef.values)
+    for (final v in context.context.values)
       v.name.value: context.namePrinter.printEnumValueName(v.name),
     kUnknowkEnumValue: kUnknowkEnumValue
   };
@@ -22,8 +21,7 @@ List<Spec> printEnum(PrintContext<ContextEnum> context) {
     ),
     Method(
       (b) => b
-        ..name =
-            context.namePrinter.printToJsonConverterFunctionName(context.path)
+        ..name = context.namePrinter.printToJsonConverterFunctionName(context.path)
         ..returns = refer('String')
         ..requiredParameters = ListBuilder([
           Parameter(
@@ -41,8 +39,7 @@ List<Spec> printEnum(PrintContext<ContextEnum> context) {
     ),
     Method(
       (b) => b
-        ..name =
-            context.namePrinter.printFromJsonConverterFunctionName(context.path)
+        ..name = context.namePrinter.printFromJsonConverterFunctionName(context.path)
         ..returns = refer(className)
         ..requiredParameters = ListBuilder([
           Parameter(
@@ -55,8 +52,7 @@ List<Spec> printEnum(PrintContext<ContextEnum> context) {
           Code('switch(value) {'),
           for (final value in values.entries)
             if (value.key != kUnknowkEnumValue)
-              Code(
-                  'case r\'${value.key}\': return ${className}.${value.value};'),
+              Code('case r\'${value.key}\': return ${className}.${value.value};'),
           Code('default: return ${className}.${kUnknowkEnumValue};'),
           Code('}')
         ]),

@@ -35,7 +35,12 @@ class ContextVisitor extends RecursiveVisitor {
   @override
   void visitInputObjectTypeDefinitionNode(InputObjectTypeDefinitionNode node) {
     final c = context.withInput(node);
-    node.visitChildren(ContextVisitor(context: c));
+    final visitor = ContextVisitor(context: c);
+    node.visitChildren(visitor);
+    c.schema.definitions
+        .whereType<InputObjectTypeExtensionNode>()
+        .where((element) => element.name.value == node.name.value)
+        .forEach((element) => element.visitChildren(visitor));
   }
 
   @override
