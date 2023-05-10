@@ -29,8 +29,7 @@ List<Spec> printFragmentSpecs(PrintContext<ContextFragment> elementContext) {
             .code,
       ),
     ],
-    if (clients.contains(GraphQLCodegenConfigClient.graphql) ||
-        clients.contains(GraphQLCodegenConfigClient.graphqlFlutter))
+    if (clients.contains(GraphQLCodegenConfigClient.graphql))
       ...printGraphQLClientFragmentSpecs(elementContext)
   ];
 }

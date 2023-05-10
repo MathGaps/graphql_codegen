@@ -1,41 +1,22 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:code_builder/code_builder.dart';
-import 'package:gql/schema.dart' as gql;
-import 'package:graphql_codegen/graphql_codegen.dart';
 import 'package:graphql_codegen/src/context.dart';
 import 'package:graphql_codegen/src/printer/base/constants.dart';
 import 'package:graphql_codegen/src/printer/context.dart';
 
 List<Spec> printEnum(PrintContext<ContextEnum> context) {
-  final config =
-      context.context.config.enums[context.context.currentTypeName.value];
-  if (config?.type != null) {
-    return [];
-  }
-
-  final fallbackEnumValue = config?.fallbackEnumValue;
-
-  if (fallbackEnumValue != null &&
-      context.context.values.whereType<gql.EnumValueDefinition?>().firstWhere(
-              (element) => element?.name == fallbackEnumValue,
-              orElse: () => null) !=
-          null) {
-    throw PrinterError(
-      "Enum fallback value for enum \"${context.context.currentType.name.value}\" is not a valid value.",
-    );
-  }
-
+  final typeDef = context.context.currentType;
   final values = {
-    for (final v in context.context.values)
+    for (final v in typeDef.values)
       v.name.value: context.namePrinter.printEnumValueName(v.name),
-    if (fallbackEnumValue == null) kUnknowkEnumValue: kUnknowkEnumValue
+    kUnknowkEnumValue: kUnknowkEnumValue
   };
   final className = context.namePrinter.printClassName(context.path);
   final specs = <Spec>[
     Enum(
       (b) => b
         ..name = className
-        ..values = ListBuilder<EnumValue>(
+        ..values = ListBuilder(
           values.entries.map((e) => EnumValue((b) => b..name = e.value)),
         ),
     ),
@@ -76,8 +57,7 @@ List<Spec> printEnum(PrintContext<ContextEnum> context) {
             if (value.key != kUnknowkEnumValue)
               Code(
                   'case r\'${value.key}\': return ${className}.${value.value};'),
-          Code(
-              'default: return ${className}.${fallbackEnumValue ?? kUnknowkEnumValue};'),
+          Code('default: return ${className}.${kUnknowkEnumValue};'),
           Code('}')
         ]),
     )

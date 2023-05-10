@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -76,7 +75,7 @@ class _CopyWithImpl$Query$FetchSNoVariables<TRes>
 
   final TRes Function(Query$FetchSNoVariables) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? s = _undefined}) => _then(Query$FetchSNoVariables(
       s: s == _undefined ? _instance.s : (s as String?)));
@@ -119,10 +118,6 @@ const documentNodeQueryFetchSNoVariables = DocumentNode(definitions: [
 Query$FetchSNoVariables _parserFn$Query$FetchSNoVariables(
         Map<String, dynamic> data) =>
     Query$FetchSNoVariables.fromJson(data);
-typedef OnQueryComplete$Query$FetchSNoVariables = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  Query$FetchSNoVariables?,
-);
 
 class Options$Query$FetchSNoVariables
     extends graphql.QueryOptions<Query$FetchSNoVariables> {
@@ -132,42 +127,19 @@ class Options$Query$FetchSNoVariables
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$FetchSNoVariables? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-    OnQueryComplete$Query$FetchSNoVariables? onComplete,
-    graphql.OnQueryError? onError,
-  })  : onCompleteWithParsed = onComplete,
-        super(
+  }) : super(
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           pollInterval: pollInterval,
           context: context,
-          onComplete: onComplete == null
-              ? null
-              : (data) => onComplete(
-                    data,
-                    data == null
-                        ? null
-                        : _parserFn$Query$FetchSNoVariables(data),
-                  ),
-          onError: onError,
           document: documentNodeQueryFetchSNoVariables,
           parserFn: _parserFn$Query$FetchSNoVariables,
         );
-
-  final OnQueryComplete$Query$FetchSNoVariables? onCompleteWithParsed;
-
-  @override
-  List<Object?> get properties => [
-        ...super.onComplete == null
-            ? super.properties
-            : super.properties.where((property) => property != onComplete),
-        onCompleteWithParsed,
-      ];
 }
 
 class WatchOptions$Query$FetchSNoVariables
@@ -178,7 +150,6 @@ class WatchOptions$Query$FetchSNoVariables
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$FetchSNoVariables? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -189,7 +160,7 @@ class WatchOptions$Query$FetchSNoVariables
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           document: documentNodeQueryFetchSNoVariables,
           pollInterval: pollInterval,
@@ -262,4 +233,4 @@ class Query$FetchSNoVariables$Widget
         );
 }
 
-const possibleTypesMap = <String, Set<String>>{};
+const possibleTypesMap = {};

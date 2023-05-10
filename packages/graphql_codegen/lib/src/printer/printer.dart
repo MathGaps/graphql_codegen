@@ -9,12 +9,6 @@ import 'package:graphql_codegen/src/context.dart';
 
 import 'base/schema.dart';
 
-bool _shouldPrintContext(Context c) {
-  return (c.replacementContext == null) ||
-      (c.extendsContext != null &&
-          c.extendsContext?.replacementContext == null);
-}
-
 Library printRootContext<TKey extends Object>(
     PrintContext<ContextRoot<TKey>> c) {
   final context = c.context;
@@ -25,10 +19,10 @@ Library printRootContext<TKey extends Object>(
     ...context.contextEnums
         .expand((context) => printEnum(c.withContext(context))),
     ...context.contextFragments
-        .where(_shouldPrintContext)
+        .where((element) => element.replacementContext == null)
         .expand((context) => printFragmentSpecs(c.withContext(context))),
     ...context.contextOperations
-        .where(_shouldPrintContext)
+        .where((element) => element.replacementContext == null)
         .expand((context) => printOperationSpecs(c.withContext(context))),
     if (context.isMainContext) printPossibleTypesMap(c),
     ...c.converters,

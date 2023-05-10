@@ -31,12 +31,7 @@ Spec printRunMutationTypeDef(PrintContext c) {
             (b) => b
               ..symbol = 'Object'
               ..isNullable = true,
-          ),
-          'typedOptimisticResult': TypeReference(
-            (b) => b
-              ..symbol = c.namePrinter.printClassName(context.path)
-              ..isNullable = true,
-          ),
+          )
         },
       ),
   ).toTypeDef(
@@ -146,11 +141,6 @@ Spec printMutation(PrintContext c) {
                               (b) => b
                                 ..name = 'optimisticResult'
                                 ..named = true,
-                            ),
-                            Parameter(
-                              (b) => b
-                                ..name = 'typedOptimisticResult'
-                                ..named = true,
                             )
                           ])
                           ..body = refer('run').call(
@@ -164,14 +154,7 @@ Spec printMutation(PrintContext c) {
                                     .nullSafeProperty('toJson')
                                     .call([]).ifNullThen(literalConstMap({})),
                             ],
-                            {
-                              'optimisticResult':
-                                  refer('optimisticResult').ifNullThen(
-                                refer('typedOptimisticResult')
-                                    .nullSafeProperty('toJson')
-                                    .call([]),
-                              )
-                            },
+                            {'optimisticResult': refer('optimisticResult')},
                           ).code,
                       ).closure,
                       refer('result'),
@@ -331,9 +314,9 @@ Spec printMutationHookResult(PrintContext context) {
 Spec printMutationHook(PrintContext context) {
   final runMutation = context.context.hasVariables
       ? context.context.isVariablesRequired
-          ? '(variables, {optimisticResult, typedOptimisticResult}) => result.runMutation(variables.toJson(), optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(), )'
-          : '({variables, optimisticResult, typedOptimisticResult}) => result.runMutation(variables?.toJson() ?? const {}, optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(), )'
-      : '({optimisticResult, typedOptimisticResult}) => result.runMutation(const {}, optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(), )';
+          ? '(variables, {optimisticResult}) => result.runMutation(variables.toJson(), optimisticResult: optimisticResult, )'
+          : '({variables, optimisticResult}) => result.runMutation(variables?.toJson() ?? const {}, optimisticResult: optimisticResult, )'
+      : '({optimisticResult}) => result.runMutation(const {}, optimisticResult: optimisticResult, )';
   return Method(
     (b) => b
       ..optionalParameters = ListBuilder([

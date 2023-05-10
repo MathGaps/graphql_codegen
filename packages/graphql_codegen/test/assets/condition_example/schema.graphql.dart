@@ -1,4 +1,4 @@
-const possibleTypesMap = <String, Set<String>>{
+const possibleTypesMap = {
   'Condition': {
     'AndCondition',
     'TimeCondition',

@@ -1,7 +1,0 @@
-{
-    "namingSeparator": "___",
-    "clients": [
-        "graphql",
-        "graphql_flutter"
-      ]    
-}

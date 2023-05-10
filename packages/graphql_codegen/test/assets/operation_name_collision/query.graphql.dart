@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -75,7 +74,7 @@ class _CopyWithImpl$Query$Operation<TRes>
 
   final TRes Function(Query$Operation) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? name = _undefined}) => _then(Query$Operation(
       name: name == _undefined ? _instance.name : (name as String?)));
@@ -109,10 +108,6 @@ const documentNodeQueryOperation = DocumentNode(definitions: [
 ]);
 Query$Operation _parserFn$Query$Operation(Map<String, dynamic> data) =>
     Query$Operation.fromJson(data);
-typedef OnQueryComplete$Query$Operation = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  Query$Operation?,
-);
 
 class Options$Query$Operation extends graphql.QueryOptions<Query$Operation> {
   Options$Query$Operation({
@@ -121,40 +116,19 @@ class Options$Query$Operation extends graphql.QueryOptions<Query$Operation> {
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$Operation? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-    OnQueryComplete$Query$Operation? onComplete,
-    graphql.OnQueryError? onError,
-  })  : onCompleteWithParsed = onComplete,
-        super(
+  }) : super(
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           pollInterval: pollInterval,
           context: context,
-          onComplete: onComplete == null
-              ? null
-              : (data) => onComplete(
-                    data,
-                    data == null ? null : _parserFn$Query$Operation(data),
-                  ),
-          onError: onError,
           document: documentNodeQueryOperation,
           parserFn: _parserFn$Query$Operation,
         );
-
-  final OnQueryComplete$Query$Operation? onCompleteWithParsed;
-
-  @override
-  List<Object?> get properties => [
-        ...super.onComplete == null
-            ? super.properties
-            : super.properties.where((property) => property != onComplete),
-        onCompleteWithParsed,
-      ];
 }
 
 class WatchOptions$Query$Operation
@@ -165,7 +139,6 @@ class WatchOptions$Query$Operation
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$Operation? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -176,7 +149,7 @@ class WatchOptions$Query$Operation
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           document: documentNodeQueryOperation,
           pollInterval: pollInterval,

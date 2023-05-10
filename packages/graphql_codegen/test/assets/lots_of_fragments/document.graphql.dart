@@ -1,8 +1,8 @@
 import 'package:gql/ast.dart';
 
-class Fragment$FragmentA implements Fragment$FragmentI$$FieldA {
+class Fragment$FragmentA implements Fragment$FragmentI {
   Fragment$FragmentA({
-    this.$__typename = 'FieldA',
+    required this.$__typename,
     this.value,
     this.name,
   });
@@ -109,7 +109,7 @@ class _CopyWithImpl$Fragment$FragmentA<TRes>
 
   final TRes Function(Fragment$FragmentA) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? $__typename = _undefined,
@@ -180,18 +180,12 @@ class Fragment$FragmentI {
   });
 
   factory Fragment$FragmentI.fromJson(Map<String, dynamic> json) {
-    switch (json["__typename"] as String) {
-      case "FieldA":
-        return Fragment$FragmentI$$FieldA.fromJson(json);
-
-      default:
-        final l$$__typename = json['__typename'];
-        final l$name = json['name'];
-        return Fragment$FragmentI(
-          $__typename: (l$$__typename as String),
-          name: (l$name as String?),
-        );
-    }
+    final l$$__typename = json['__typename'];
+    final l$name = json['name'];
+    return Fragment$FragmentI(
+      $__typename: (l$$__typename as String),
+      name: (l$name as String?),
+    );
   }
 
   final String $__typename;
@@ -245,35 +239,6 @@ extension UtilityExtension$Fragment$FragmentI on Fragment$FragmentI {
         this,
         (i) => i,
       );
-  _T when<_T>({
-    required _T Function(Fragment$FragmentI$$FieldA) fieldA,
-    required _T Function() orElse,
-  }) {
-    switch ($__typename) {
-      case "FieldA":
-        return fieldA(this as Fragment$FragmentI$$FieldA);
-
-      default:
-        return orElse();
-    }
-  }
-
-  _T maybeWhen<_T>({
-    _T Function(Fragment$FragmentI$$FieldA)? fieldA,
-    required _T Function() orElse,
-  }) {
-    switch ($__typename) {
-      case "FieldA":
-        if (fieldA != null) {
-          return fieldA(this as Fragment$FragmentI$$FieldA);
-        } else {
-          return orElse();
-        }
-
-      default:
-        return orElse();
-    }
-  }
 }
 
 abstract class CopyWith$Fragment$FragmentI<TRes> {
@@ -302,7 +267,7 @@ class _CopyWithImpl$Fragment$FragmentI<TRes>
 
   final TRes Function(Fragment$FragmentI) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? $__typename = _undefined,
@@ -358,132 +323,9 @@ const documentNodeFragmentFragmentI = DocumentNode(definitions: [
   fragmentDefinitionFragmentI,
 ]);
 
-class Fragment$FragmentI$$FieldA implements Fragment$FragmentI {
-  Fragment$FragmentI$$FieldA({
-    this.$__typename = 'FieldA',
-    this.name,
-  });
-
-  factory Fragment$FragmentI$$FieldA.fromJson(Map<String, dynamic> json) {
-    final l$$__typename = json['__typename'];
-    final l$name = json['name'];
-    return Fragment$FragmentI$$FieldA(
-      $__typename: (l$$__typename as String),
-      name: (l$name as String?),
-    );
-  }
-
-  final String $__typename;
-
-  final String? name;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$$__typename = $__typename;
-    final l$name = name;
-    return Object.hashAll([
-      l$$__typename,
-      l$name,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other is Fragment$FragmentI$$FieldA) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$FragmentI$$FieldA
-    on Fragment$FragmentI$$FieldA {
-  CopyWith$Fragment$FragmentI$$FieldA<Fragment$FragmentI$$FieldA>
-      get copyWith => CopyWith$Fragment$FragmentI$$FieldA(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$FragmentI$$FieldA<TRes> {
-  factory CopyWith$Fragment$FragmentI$$FieldA(
-    Fragment$FragmentI$$FieldA instance,
-    TRes Function(Fragment$FragmentI$$FieldA) then,
-  ) = _CopyWithImpl$Fragment$FragmentI$$FieldA;
-
-  factory CopyWith$Fragment$FragmentI$$FieldA.stub(TRes res) =
-      _CopyWithStubImpl$Fragment$FragmentI$$FieldA;
-
-  TRes call({
-    String? $__typename,
-    String? name,
-  });
-}
-
-class _CopyWithImpl$Fragment$FragmentI$$FieldA<TRes>
-    implements CopyWith$Fragment$FragmentI$$FieldA<TRes> {
-  _CopyWithImpl$Fragment$FragmentI$$FieldA(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$FragmentI$$FieldA _instance;
-
-  final TRes Function(Fragment$FragmentI$$FieldA) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? $__typename = _undefined,
-    Object? name = _undefined,
-  }) =>
-      _then(Fragment$FragmentI$$FieldA(
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-        name: name == _undefined ? _instance.name : (name as String?),
-      ));
-}
-
-class _CopyWithStubImpl$Fragment$FragmentI$$FieldA<TRes>
-    implements CopyWith$Fragment$FragmentI$$FieldA<TRes> {
-  _CopyWithStubImpl$Fragment$FragmentI$$FieldA(this._res);
-
-  TRes _res;
-
-  call({
-    String? $__typename,
-    String? name,
-  }) =>
-      _res;
-}
-
 class Query$FetchStuff {
   Query$FetchStuff({
-    this.$__typename = 'Query',
+    required this.$__typename,
     this.field,
   });
 
@@ -578,7 +420,7 @@ class _CopyWithImpl$Query$FetchStuff<TRes>
 
   final TRes Function(Query$FetchStuff) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? $__typename = _undefined,
@@ -782,35 +624,6 @@ extension UtilityExtension$Query$FetchStuff$field on Query$FetchStuff$field {
         this,
         (i) => i,
       );
-  _T when<_T>({
-    required _T Function(Query$FetchStuff$field$$FieldA) fieldA,
-    required _T Function() orElse,
-  }) {
-    switch ($__typename) {
-      case "FieldA":
-        return fieldA(this as Query$FetchStuff$field$$FieldA);
-
-      default:
-        return orElse();
-    }
-  }
-
-  _T maybeWhen<_T>({
-    _T Function(Query$FetchStuff$field$$FieldA)? fieldA,
-    required _T Function() orElse,
-  }) {
-    switch ($__typename) {
-      case "FieldA":
-        if (fieldA != null) {
-          return fieldA(this as Query$FetchStuff$field$$FieldA);
-        } else {
-          return orElse();
-        }
-
-      default:
-        return orElse();
-    }
-  }
 }
 
 abstract class CopyWith$Query$FetchStuff$field<TRes> {
@@ -839,7 +652,7 @@ class _CopyWithImpl$Query$FetchStuff$field<TRes>
 
   final TRes Function(Query$FetchStuff$field) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? $__typename = _undefined,
@@ -867,53 +680,50 @@ class _CopyWithStubImpl$Query$FetchStuff$field<TRes>
 }
 
 class Query$FetchStuff$field$$FieldA
-    implements
-        Fragment$FragmentA,
-        Fragment$FragmentI$$FieldA,
-        Query$FetchStuff$field {
+    implements Fragment$FragmentA, Fragment$FragmentI, Query$FetchStuff$field {
   Query$FetchStuff$field$$FieldA({
-    this.$__typename = 'FieldA',
-    this.value,
+    required this.$__typename,
     this.name,
+    this.value,
   });
 
   factory Query$FetchStuff$field$$FieldA.fromJson(Map<String, dynamic> json) {
     final l$$__typename = json['__typename'];
-    final l$value = json['value'];
     final l$name = json['name'];
+    final l$value = json['value'];
     return Query$FetchStuff$field$$FieldA(
       $__typename: (l$$__typename as String),
-      value: (l$value as String?),
       name: (l$name as String?),
+      value: (l$value as String?),
     );
   }
 
   final String $__typename;
 
-  final String? value;
-
   final String? name;
+
+  final String? value;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
-    final l$value = value;
-    _resultData['value'] = l$value;
     final l$name = name;
     _resultData['name'] = l$name;
+    final l$value = value;
+    _resultData['value'] = l$value;
     return _resultData;
   }
 
   @override
   int get hashCode {
     final l$$__typename = $__typename;
-    final l$value = value;
     final l$name = name;
+    final l$value = value;
     return Object.hashAll([
       l$$__typename,
-      l$value,
       l$name,
+      l$value,
     ]);
   }
 
@@ -931,14 +741,14 @@ class Query$FetchStuff$field$$FieldA
     if (l$$__typename != lOther$$__typename) {
       return false;
     }
-    final l$value = value;
-    final lOther$value = other.value;
-    if (l$value != lOther$value) {
-      return false;
-    }
     final l$name = name;
     final lOther$name = other.name;
     if (l$name != lOther$name) {
+      return false;
+    }
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) {
       return false;
     }
     return true;
@@ -965,8 +775,8 @@ abstract class CopyWith$Query$FetchStuff$field$$FieldA<TRes> {
 
   TRes call({
     String? $__typename,
-    String? value,
     String? name,
+    String? value,
   });
 }
 
@@ -981,19 +791,19 @@ class _CopyWithImpl$Query$FetchStuff$field$$FieldA<TRes>
 
   final TRes Function(Query$FetchStuff$field$$FieldA) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? $__typename = _undefined,
-    Object? value = _undefined,
     Object? name = _undefined,
+    Object? value = _undefined,
   }) =>
       _then(Query$FetchStuff$field$$FieldA(
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
-        value: value == _undefined ? _instance.value : (value as String?),
         name: name == _undefined ? _instance.name : (name as String?),
+        value: value == _undefined ? _instance.value : (value as String?),
       ));
 }
 
@@ -1005,12 +815,12 @@ class _CopyWithStubImpl$Query$FetchStuff$field$$FieldA<TRes>
 
   call({
     String? $__typename,
-    String? value,
     String? name,
+    String? value,
   }) =>
       _res;
 }
 
-const possibleTypesMap = <String, Set<String>>{
+const possibleTypesMap = {
   'IField': {'FieldA'}
 };

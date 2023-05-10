@@ -1,8 +1,0 @@
-
-enum Enum {
-    FOO BAR BAZ
-}
-
-type Query {
-    value: Enum
-}

@@ -1,5 +1,0 @@
-enum MyEnum {
-  FIRST
-  LAST
-  OTHER
-}

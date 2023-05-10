@@ -75,7 +75,7 @@ class _CopyWithImpl$Mutation$UpdateSNo<TRes>
 
   final TRes Function(Mutation$UpdateSNo) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? s = _undefined}) => _then(
       Mutation$UpdateSNo(s: s == _undefined ? _instance.s : (s as String?)));
@@ -118,7 +118,7 @@ const documentNodeMutationUpdateSNo = DocumentNode(definitions: [
 Mutation$UpdateSNo _parserFn$Mutation$UpdateSNo(Map<String, dynamic> data) =>
     Mutation$UpdateSNo.fromJson(data);
 typedef OnMutationCompleted$Mutation$UpdateSNo = FutureOr<void> Function(
-  Map<String, dynamic>?,
+  dynamic,
   Mutation$UpdateSNo?,
 );
 
@@ -130,7 +130,6 @@ class Options$Mutation$UpdateSNo
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Mutation$UpdateSNo? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$UpdateSNo? onCompleted,
     graphql.OnMutationUpdate<Mutation$UpdateSNo>? update,
@@ -141,7 +140,7 @@ class Options$Mutation$UpdateSNo
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -174,7 +173,6 @@ class WatchOptions$Mutation$UpdateSNo
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Mutation$UpdateSNo? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -185,7 +183,7 @@ class WatchOptions$Mutation$UpdateSNo
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           document: documentNodeMutationUpdateSNo,
           pollInterval: pollInterval,
@@ -221,9 +219,9 @@ Mutation$UpdateSNo$HookResult useMutation$UpdateSNo(
   final result = graphql_flutter
       .useMutation(options ?? WidgetOptions$Mutation$UpdateSNo());
   return Mutation$UpdateSNo$HookResult(
-    ({optimisticResult, typedOptimisticResult}) => result.runMutation(
+    ({optimisticResult}) => result.runMutation(
       const {},
-      optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+      optimisticResult: optimisticResult,
     ),
     result.result,
   );
@@ -242,7 +240,6 @@ class WidgetOptions$Mutation$UpdateSNo
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Mutation$UpdateSNo? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$UpdateSNo? onCompleted,
     graphql.OnMutationUpdate<Mutation$UpdateSNo>? update,
@@ -253,7 +250,7 @@ class WidgetOptions$Mutation$UpdateSNo
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -279,10 +276,8 @@ class WidgetOptions$Mutation$UpdateSNo
 }
 
 typedef RunMutation$Mutation$UpdateSNo
-    = graphql.MultiSourceResult<Mutation$UpdateSNo> Function({
-  Object? optimisticResult,
-  Mutation$UpdateSNo? typedOptimisticResult,
-});
+    = graphql.MultiSourceResult<Mutation$UpdateSNo> Function(
+        {Object? optimisticResult});
 typedef Builder$Mutation$UpdateSNo = widgets.Widget Function(
   RunMutation$Mutation$UpdateSNo,
   graphql.QueryResult<Mutation$UpdateSNo>?,
@@ -302,18 +297,13 @@ class Mutation$UpdateSNo$Widget
             result,
           ) =>
               builder(
-            ({
-              optimisticResult,
-              typedOptimisticResult,
-            }) =>
-                run(
+            ({optimisticResult}) => run(
               const {},
-              optimisticResult:
-                  optimisticResult ?? typedOptimisticResult?.toJson(),
+              optimisticResult: optimisticResult,
             ),
             result,
           ),
         );
 }
 
-const possibleTypesMap = <String, Set<String>>{};
+const possibleTypesMap = {};

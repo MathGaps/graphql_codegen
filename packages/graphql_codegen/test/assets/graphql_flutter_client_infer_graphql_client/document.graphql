@@ -1,7 +1,0 @@
-type Mutation {
-  s(name: String): String
-}
-
-mutation UpdateSNo {
-  s(name: "lol")
-}

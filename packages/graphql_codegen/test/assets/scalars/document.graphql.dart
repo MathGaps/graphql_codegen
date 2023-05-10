@@ -184,7 +184,7 @@ class _CopyWithImpl$Query$FetchScalars<TRes>
 
   final TRes Function(Query$FetchScalars) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? i = _undefined,
@@ -283,4 +283,4 @@ const documentNodeQueryFetchScalars = DocumentNode(definitions: [
     ]),
   ),
 ]);
-const possibleTypesMap = <String, Set<String>>{};
+const possibleTypesMap = {};

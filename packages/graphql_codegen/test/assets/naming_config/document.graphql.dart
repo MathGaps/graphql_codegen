@@ -2,7 +2,7 @@ import 'package:gql/ast.dart';
 
 enum Enum___Status { Pending, Successful, Failure, InProgress, $unknown }
 
-String toJson___Enum___Status(Enum___Status e) {
+String toJson$Enum___Status(Enum___Status e) {
   switch (e) {
     case Enum___Status.Pending:
       return r'Pending';
@@ -17,7 +17,7 @@ String toJson___Enum___Status(Enum___Status e) {
   }
 }
 
-Enum___Status fromJson___Enum___Status(String value) {
+Enum___Status fromJson$Enum___Status(String value) {
   switch (value) {
     case r'Pending':
       return Enum___Status.Pending;
@@ -35,7 +35,7 @@ Enum___Status fromJson___Enum___Status(String value) {
 class Query___Q {
   Query___Q({
     this.status,
-    this.$__typename = 'Query',
+    required this.$__typename,
   });
 
   factory Query___Q.fromJson(Map<String, dynamic> json) {
@@ -44,7 +44,7 @@ class Query___Q {
     return Query___Q(
       status: l$status == null
           ? null
-          : fromJson___Enum___Status((l$status as String)),
+          : fromJson$Enum___Status((l$status as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -57,7 +57,7 @@ class Query___Q {
     final _resultData = <String, dynamic>{};
     final l$status = status;
     _resultData['status'] =
-        l$status == null ? null : toJson___Enum___Status(l$status);
+        l$status == null ? null : toJson$Enum___Status(l$status);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -95,20 +95,20 @@ class Query___Q {
   }
 }
 
-extension UtilityExtension___Query___Q on Query___Q {
-  CopyWith___Query___Q<Query___Q> get copyWith => CopyWith___Query___Q(
+extension UtilityExtension$Query___Q on Query___Q {
+  CopyWith$Query___Q<Query___Q> get copyWith => CopyWith$Query___Q(
         this,
         (i) => i,
       );
 }
 
-abstract class CopyWith___Query___Q<TRes> {
-  factory CopyWith___Query___Q(
+abstract class CopyWith$Query___Q<TRes> {
+  factory CopyWith$Query___Q(
     Query___Q instance,
     TRes Function(Query___Q) then,
-  ) = _CopyWithImpl___Query___Q;
+  ) = _CopyWithImpl$Query___Q;
 
-  factory CopyWith___Query___Q.stub(TRes res) = _CopyWithStubImpl___Query___Q;
+  factory CopyWith$Query___Q.stub(TRes res) = _CopyWithStubImpl$Query___Q;
 
   TRes call({
     Enum___Status? status,
@@ -116,8 +116,8 @@ abstract class CopyWith___Query___Q<TRes> {
   });
 }
 
-class _CopyWithImpl___Query___Q<TRes> implements CopyWith___Query___Q<TRes> {
-  _CopyWithImpl___Query___Q(
+class _CopyWithImpl$Query___Q<TRes> implements CopyWith$Query___Q<TRes> {
+  _CopyWithImpl$Query___Q(
     this._instance,
     this._then,
   );
@@ -126,7 +126,7 @@ class _CopyWithImpl___Query___Q<TRes> implements CopyWith___Query___Q<TRes> {
 
   final TRes Function(Query___Q) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? status = _undefined,
@@ -142,9 +142,8 @@ class _CopyWithImpl___Query___Q<TRes> implements CopyWith___Query___Q<TRes> {
       ));
 }
 
-class _CopyWithStubImpl___Query___Q<TRes>
-    implements CopyWith___Query___Q<TRes> {
-  _CopyWithStubImpl___Query___Q(this._res);
+class _CopyWithStubImpl$Query___Q<TRes> implements CopyWith$Query___Q<TRes> {
+  _CopyWithStubImpl$Query___Q(this._res);
 
   TRes _res;
 
@@ -179,4 +178,4 @@ const documentNodeQueryQ = DocumentNode(definitions: [
     ]),
   ),
 ]);
-const possibleTypesMap = <String, Set<String>>{};
+const possibleTypesMap = {};

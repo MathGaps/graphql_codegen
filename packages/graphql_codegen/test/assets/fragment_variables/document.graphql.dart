@@ -81,7 +81,7 @@ class _CopyWithImpl$Input$Input<TRes> implements CopyWith$Input$Input<TRes> {
 
   final TRes Function(Input$Input) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? inputField = _undefined}) => _then(Input$Input._({
         ..._instance._$data,
@@ -202,7 +202,7 @@ class _CopyWithImpl$Variables$Fragment$F1<TRes>
 
   final TRes Function(Variables$Fragment$F1) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? i = _undefined,
@@ -231,7 +231,7 @@ class _CopyWithStubImpl$Variables$Fragment$F1<TRes>
 class Fragment$F1 {
   Fragment$F1({
     this.level1,
-    this.$__typename = 'Query',
+    required this.$__typename,
   });
 
   factory Fragment$F1.fromJson(Map<String, dynamic> json) {
@@ -322,7 +322,7 @@ class _CopyWithImpl$Fragment$F1<TRes> implements CopyWith$Fragment$F1<TRes> {
 
   final TRes Function(Fragment$F1) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? level1 = _undefined,
@@ -456,7 +456,7 @@ const documentNodeFragmentF1 = DocumentNode(definitions: [
 class Fragment$F1$level1 {
   Fragment$F1$level1({
     this.level2,
-    this.$__typename = 'Level1',
+    required this.$__typename,
   });
 
   factory Fragment$F1$level1.fromJson(Map<String, dynamic> json) {
@@ -551,7 +551,7 @@ class _CopyWithImpl$Fragment$F1$level1<TRes>
 
   final TRes Function(Fragment$F1$level1) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? level2 = _undefined,
@@ -592,7 +592,7 @@ class _CopyWithStubImpl$Fragment$F1$level1<TRes>
 class Fragment$F1$level1$level2 {
   Fragment$F1$level1$level2({
     this.level3,
-    this.$__typename = 'Level2',
+    required this.$__typename,
   });
 
   factory Fragment$F1$level1$level2.fromJson(Map<String, dynamic> json) {
@@ -689,7 +689,7 @@ class _CopyWithImpl$Fragment$F1$level1$level2<TRes>
 
   final TRes Function(Fragment$F1$level1$level2) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? level3 = _undefined,
@@ -730,7 +730,7 @@ class _CopyWithStubImpl$Fragment$F1$level1$level2<TRes>
 class Fragment$F1$level1$level2$level3 {
   Fragment$F1$level1$level2$level3({
     this.level4,
-    this.$__typename = 'Level3',
+    required this.$__typename,
   });
 
   factory Fragment$F1$level1$level2$level3.fromJson(Map<String, dynamic> json) {
@@ -823,7 +823,7 @@ class _CopyWithImpl$Fragment$F1$level1$level2$level3<TRes>
 
   final TRes Function(Fragment$F1$level1$level2$level3) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? level4 = _undefined,
@@ -961,7 +961,7 @@ class _CopyWithImpl$Variables$Fragment$F2<TRes>
 
   final TRes Function(Variables$Fragment$F2) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? i = _undefined,
@@ -990,7 +990,7 @@ class _CopyWithStubImpl$Variables$Fragment$F2<TRes>
 class Fragment$F2 {
   Fragment$F2({
     this.level1,
-    this.$__typename = 'Query',
+    required this.$__typename,
   });
 
   factory Fragment$F2.fromJson(Map<String, dynamic> json) {
@@ -1081,7 +1081,7 @@ class _CopyWithImpl$Fragment$F2<TRes> implements CopyWith$Fragment$F2<TRes> {
 
   final TRes Function(Fragment$F2) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? level1 = _undefined,
@@ -1246,7 +1246,7 @@ class _CopyWithImpl$Variables$Fragment$F21<TRes>
 
   final TRes Function(Variables$Fragment$F21) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? i = _undefined}) => _then(Variables$Fragment$F21._({
         ..._instance._$data,
@@ -1266,7 +1266,7 @@ class _CopyWithStubImpl$Variables$Fragment$F21<TRes>
 class Fragment$F21 {
   Fragment$F21({
     this.level2,
-    this.$__typename = 'Level1',
+    required this.$__typename,
   });
 
   factory Fragment$F21.fromJson(Map<String, dynamic> json) {
@@ -1357,7 +1357,7 @@ class _CopyWithImpl$Fragment$F21<TRes> implements CopyWith$Fragment$F21<TRes> {
 
   final TRes Function(Fragment$F21) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? level2 = _undefined,
@@ -1474,7 +1474,7 @@ const documentNodeFragmentF21 = DocumentNode(definitions: [
 class Fragment$F21$level2 {
   Fragment$F21$level2({
     this.level3,
-    this.$__typename = 'Level2',
+    required this.$__typename,
   });
 
   factory Fragment$F21$level2.fromJson(Map<String, dynamic> json) {
@@ -1569,7 +1569,7 @@ class _CopyWithImpl$Fragment$F21$level2<TRes>
 
   final TRes Function(Fragment$F21$level2) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? level3 = _undefined,
@@ -1610,7 +1610,7 @@ class _CopyWithStubImpl$Fragment$F21$level2<TRes>
 class Fragment$F21$level2$level3 {
   Fragment$F21$level2$level3({
     this.level4,
-    this.$__typename = 'Level3',
+    required this.$__typename,
   });
 
   factory Fragment$F21$level2$level3.fromJson(Map<String, dynamic> json) {
@@ -1703,7 +1703,7 @@ class _CopyWithImpl$Fragment$F21$level2$level3<TRes>
 
   final TRes Function(Fragment$F21$level2$level3) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? level4 = _undefined,
@@ -1730,4 +1730,4 @@ class _CopyWithStubImpl$Fragment$F21$level2$level3<TRes>
       _res;
 }
 
-const possibleTypesMap = <String, Set<String>>{};
+const possibleTypesMap = {};

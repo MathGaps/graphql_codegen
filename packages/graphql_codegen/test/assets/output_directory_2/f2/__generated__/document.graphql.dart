@@ -4,7 +4,7 @@ import 'package:gql/ast.dart';
 class Query$Q {
   Query$Q({
     this.name,
-    this.$__typename = 'Query',
+    required this.$__typename,
   });
 
   factory Query$Q.fromJson(Map<String, dynamic> json) {
@@ -92,7 +92,7 @@ class _CopyWithImpl$Query$Q<TRes> implements CopyWith$Query$Q<TRes> {
 
   final TRes Function(Query$Q) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? name = _undefined,

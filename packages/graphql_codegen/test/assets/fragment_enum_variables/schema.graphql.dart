@@ -79,7 +79,7 @@ class _CopyWithImpl$Input$I<TRes> implements CopyWith$Input$I<TRes> {
 
   final TRes Function(Input$I) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? s = _undefined}) => _then(Input$I._({
         ..._instance._$data,
@@ -195,7 +195,7 @@ class _CopyWithImpl$Variables$Fragment$F1<TRes>
 
   final TRes Function(Variables$Fragment$F1) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? locale = _undefined}) => _then(Variables$Fragment$F1._({
         ..._instance._$data,
@@ -216,7 +216,7 @@ class _CopyWithStubImpl$Variables$Fragment$F1<TRes>
 class Fragment$F1 implements Fragment$F2 {
   Fragment$F1({
     this.n2,
-    this.$__typename = 'Node',
+    required this.$__typename,
     this.n1,
   });
 
@@ -319,7 +319,7 @@ class _CopyWithImpl$Fragment$F1<TRes> implements CopyWith$Fragment$F1<TRes> {
 
   final TRes Function(Fragment$F1) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? n2 = _undefined,
@@ -464,7 +464,7 @@ class _CopyWithImpl$Variables$Fragment$F2<TRes>
 
   final TRes Function(Variables$Fragment$F2) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? locale = _undefined}) => _then(Variables$Fragment$F2._({
         ..._instance._$data,
@@ -485,7 +485,7 @@ class _CopyWithStubImpl$Variables$Fragment$F2<TRes>
 class Fragment$F2 {
   Fragment$F2({
     this.n2,
-    this.$__typename = 'Node',
+    required this.$__typename,
   });
 
   factory Fragment$F2.fromJson(Map<String, dynamic> json) {
@@ -573,7 +573,7 @@ class _CopyWithImpl$Fragment$F2<TRes> implements CopyWith$Fragment$F2<TRes> {
 
   final TRes Function(Fragment$F2) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? n2 = _undefined,
@@ -711,7 +711,7 @@ class _CopyWithImpl$Variables$Fragment$F3<TRes>
 
   final TRes Function(Variables$Fragment$F3) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? i = _undefined}) => _then(Variables$Fragment$F3._({
         ..._instance._$data,
@@ -736,7 +736,7 @@ class _CopyWithStubImpl$Variables$Fragment$F3<TRes>
 class Fragment$F3 {
   Fragment$F3({
     this.test,
-    this.$__typename = 'Node',
+    required this.$__typename,
   });
 
   factory Fragment$F3.fromJson(Map<String, dynamic> json) {
@@ -824,7 +824,7 @@ class _CopyWithImpl$Fragment$F3<TRes> implements CopyWith$Fragment$F3<TRes> {
 
   final TRes Function(Fragment$F3) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? test = _undefined,
@@ -961,7 +961,7 @@ class _CopyWithImpl$Variables$Fragment$F4<TRes>
 
   final TRes Function(Variables$Fragment$F4) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? locale = _undefined}) => _then(Variables$Fragment$F4._({
         ..._instance._$data,
@@ -983,7 +983,7 @@ class Fragment$F4 {
   Fragment$F4({
     this.n1,
     this.n2,
-    this.$__typename = 'Node',
+    required this.$__typename,
   });
 
   factory Fragment$F4.fromJson(Map<String, dynamic> json) {
@@ -1085,7 +1085,7 @@ class _CopyWithImpl$Fragment$F4<TRes> implements CopyWith$Fragment$F4<TRes> {
 
   final TRes Function(Fragment$F4) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? n1 = _undefined,

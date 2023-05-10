@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -81,7 +80,7 @@ class _CopyWithImpl$Variables$Query$FetchSRequired<TRes>
 
   final TRes Function(Variables$Query$FetchSRequired) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? name = _undefined}) =>
       _then(Variables$Query$FetchSRequired._({
@@ -170,7 +169,7 @@ class _CopyWithImpl$Query$FetchSRequired<TRes>
 
   final TRes Function(Query$FetchSRequired) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? s = _undefined}) => _then(
       Query$FetchSRequired(s: s == _undefined ? _instance.s : (s as String?)));
@@ -220,10 +219,6 @@ const documentNodeQueryFetchSRequired = DocumentNode(definitions: [
 Query$FetchSRequired _parserFn$Query$FetchSRequired(
         Map<String, dynamic> data) =>
     Query$FetchSRequired.fromJson(data);
-typedef OnQueryComplete$Query$FetchSRequired = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  Query$FetchSRequired?,
-);
 
 class Options$Query$FetchSRequired
     extends graphql.QueryOptions<Query$FetchSRequired> {
@@ -234,41 +229,20 @@ class Options$Query$FetchSRequired
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$FetchSRequired? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-    OnQueryComplete$Query$FetchSRequired? onComplete,
-    graphql.OnQueryError? onError,
-  })  : onCompleteWithParsed = onComplete,
-        super(
+  }) : super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           pollInterval: pollInterval,
           context: context,
-          onComplete: onComplete == null
-              ? null
-              : (data) => onComplete(
-                    data,
-                    data == null ? null : _parserFn$Query$FetchSRequired(data),
-                  ),
-          onError: onError,
           document: documentNodeQueryFetchSRequired,
           parserFn: _parserFn$Query$FetchSRequired,
         );
-
-  final OnQueryComplete$Query$FetchSRequired? onCompleteWithParsed;
-
-  @override
-  List<Object?> get properties => [
-        ...super.onComplete == null
-            ? super.properties
-            : super.properties.where((property) => property != onComplete),
-        onCompleteWithParsed,
-      ];
 }
 
 class WatchOptions$Query$FetchSRequired
@@ -280,7 +254,6 @@ class WatchOptions$Query$FetchSRequired
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$FetchSRequired? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -292,7 +265,7 @@ class WatchOptions$Query$FetchSRequired
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           document: documentNodeQueryFetchSRequired,
           pollInterval: pollInterval,
@@ -370,4 +343,4 @@ class Query$FetchSRequired$Widget
         );
 }
 
-const possibleTypesMap = <String, Set<String>>{};
+const possibleTypesMap = {};

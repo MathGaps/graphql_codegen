@@ -97,13 +97,6 @@ class PrintContext<TContext extends Context> {
     _dependencies.add(lookupPath);
   }
 
-  void maybeAddDependency(Name? name) {
-    if (name == null) {
-      return;
-    }
-    addDependency(name);
-  }
-
   void addDependencies(Iterable<Name> names) {
     for (final name in names) {
       addDependency(name);

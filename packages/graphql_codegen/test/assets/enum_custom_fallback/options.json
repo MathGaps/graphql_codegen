@@ -1,7 +1,0 @@
-{
-    "enums": {
-        "MyEnum": {
-            "fallbackEnumValue": "OTHER"
-        }
-    }
-}

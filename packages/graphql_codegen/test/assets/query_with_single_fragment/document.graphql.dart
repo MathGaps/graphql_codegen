@@ -3,7 +3,7 @@ import 'package:gql/ast.dart';
 class Fragment$F {
   Fragment$F({
     this.name,
-    this.$__typename = 'Query',
+    required this.$__typename,
   });
 
   factory Fragment$F.fromJson(Map<String, dynamic> json) {
@@ -91,7 +91,7 @@ class _CopyWithImpl$Fragment$F<TRes> implements CopyWith$Fragment$F<TRes> {
 
   final TRes Function(Fragment$F) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? name = _undefined,
@@ -149,7 +149,7 @@ const documentNodeFragmentF = DocumentNode(definitions: [
 class Query$Q implements Fragment$F {
   Query$Q({
     this.name,
-    this.$__typename = 'Query',
+    required this.$__typename,
   });
 
   factory Query$Q.fromJson(Map<String, dynamic> json) {
@@ -237,7 +237,7 @@ class _CopyWithImpl$Query$Q<TRes> implements CopyWith$Query$Q<TRes> {
 
   final TRes Function(Query$Q) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? name = _undefined,
@@ -285,4 +285,4 @@ const documentNodeQueryQ = DocumentNode(definitions: [
   ),
   fragmentDefinitionF,
 ]);
-const possibleTypesMap = <String, Set<String>>{};
+const possibleTypesMap = {};

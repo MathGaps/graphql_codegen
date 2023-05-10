@@ -83,7 +83,7 @@ class _CopyWithImpl$Variables$Query$FetchPerson<TRes>
 
   final TRes Function(Variables$Query$FetchPerson) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? id = _undefined}) => _then(Variables$Query$FetchPerson._({
         ..._instance._$data,
@@ -103,7 +103,7 @@ class _CopyWithStubImpl$Variables$Query$FetchPerson<TRes>
 class Query$FetchPerson {
   Query$FetchPerson({
     this.fetchPerson,
-    this.$__typename = 'Query',
+    required this.$__typename,
   });
 
   factory Query$FetchPerson.fromJson(Map<String, dynamic> json) {
@@ -198,7 +198,7 @@ class _CopyWithImpl$Query$FetchPerson<TRes>
 
   final TRes Function(Query$FetchPerson) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? fetchPerson = _undefined,
@@ -329,10 +329,6 @@ const documentNodeQueryFetchPerson = DocumentNode(definitions: [
 ]);
 Query$FetchPerson _parserFn$Query$FetchPerson(Map<String, dynamic> data) =>
     Query$FetchPerson.fromJson(data);
-typedef OnQueryComplete$Query$FetchPerson = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  Query$FetchPerson?,
-);
 
 class Options$Query$FetchPerson
     extends graphql.QueryOptions<Query$FetchPerson> {
@@ -343,41 +339,20 @@ class Options$Query$FetchPerson
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$FetchPerson? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-    OnQueryComplete$Query$FetchPerson? onComplete,
-    graphql.OnQueryError? onError,
-  })  : onCompleteWithParsed = onComplete,
-        super(
+  }) : super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           pollInterval: pollInterval,
           context: context,
-          onComplete: onComplete == null
-              ? null
-              : (data) => onComplete(
-                    data,
-                    data == null ? null : _parserFn$Query$FetchPerson(data),
-                  ),
-          onError: onError,
           document: documentNodeQueryFetchPerson,
           parserFn: _parserFn$Query$FetchPerson,
         );
-
-  final OnQueryComplete$Query$FetchPerson? onCompleteWithParsed;
-
-  @override
-  List<Object?> get properties => [
-        ...super.onComplete == null
-            ? super.properties
-            : super.properties.where((property) => property != onComplete),
-        onCompleteWithParsed,
-      ];
 }
 
 class WatchOptions$Query$FetchPerson
@@ -389,7 +364,6 @@ class WatchOptions$Query$FetchPerson
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$FetchPerson? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -401,7 +375,7 @@ class WatchOptions$Query$FetchPerson
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           document: documentNodeQueryFetchPerson,
           pollInterval: pollInterval,
@@ -487,7 +461,7 @@ class Query$FetchPerson$fetchPerson implements Fragment$PersonSummary {
     this.eventsOfEvents,
     this.parents,
     this.favParent,
-    this.$__typename = 'Person',
+    required this.$__typename,
     this.children,
   });
 
@@ -772,7 +746,7 @@ class _CopyWithImpl$Query$FetchPerson$fetchPerson<TRes>
 
   final TRes Function(Query$FetchPerson$fetchPerson) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? nickname = _undefined,
@@ -872,7 +846,7 @@ class Query$FetchPerson$fetchPerson$parents
     implements Fragment$PersonParent, Fragment$PersonSummary {
   Query$FetchPerson$fetchPerson$parents({
     required this.name,
-    this.$__typename = 'Person',
+    required this.$__typename,
     this.nickname,
     this.dob,
     this.events,
@@ -1129,7 +1103,7 @@ class _CopyWithImpl$Query$FetchPerson$fetchPerson$parents<TRes>
 
   final TRes Function(Query$FetchPerson$fetchPerson$parents) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? name = _undefined,
@@ -1283,7 +1257,7 @@ class _CopyWithImpl$Variables$Mutation$UpdatePerson<TRes>
 
   final TRes Function(Variables$Mutation$UpdatePerson) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? id = _undefined}) =>
       _then(Variables$Mutation$UpdatePerson._({
@@ -1304,7 +1278,7 @@ class _CopyWithStubImpl$Variables$Mutation$UpdatePerson<TRes>
 class Mutation$UpdatePerson {
   Mutation$UpdatePerson({
     this.updatePerson,
-    this.$__typename = 'Mutation',
+    required this.$__typename,
   });
 
   factory Mutation$UpdatePerson.fromJson(Map<String, dynamic> json) {
@@ -1399,7 +1373,7 @@ class _CopyWithImpl$Mutation$UpdatePerson<TRes>
 
   final TRes Function(Mutation$UpdatePerson) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? updatePerson = _undefined,
@@ -1495,7 +1469,7 @@ Mutation$UpdatePerson _parserFn$Mutation$UpdatePerson(
         Map<String, dynamic> data) =>
     Mutation$UpdatePerson.fromJson(data);
 typedef OnMutationCompleted$Mutation$UpdatePerson = FutureOr<void> Function(
-  Map<String, dynamic>?,
+  dynamic,
   Mutation$UpdatePerson?,
 );
 
@@ -1508,7 +1482,6 @@ class Options$Mutation$UpdatePerson
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Mutation$UpdatePerson? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$UpdatePerson? onCompleted,
     graphql.OnMutationUpdate<Mutation$UpdatePerson>? update,
@@ -1520,7 +1493,7 @@ class Options$Mutation$UpdatePerson
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -1554,7 +1527,6 @@ class WatchOptions$Mutation$UpdatePerson
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Mutation$UpdatePerson? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -1566,7 +1538,7 @@ class WatchOptions$Mutation$UpdatePerson
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           document: documentNodeMutationUpdatePerson,
           pollInterval: pollInterval,
@@ -1602,10 +1574,9 @@ Mutation$UpdatePerson$HookResult useMutation$UpdatePerson(
   final result = graphql_flutter
       .useMutation(options ?? WidgetOptions$Mutation$UpdatePerson());
   return Mutation$UpdatePerson$HookResult(
-    (variables, {optimisticResult, typedOptimisticResult}) =>
-        result.runMutation(
+    (variables, {optimisticResult}) => result.runMutation(
       variables.toJson(),
-      optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+      optimisticResult: optimisticResult,
     ),
     result.result,
   );
@@ -1623,7 +1594,6 @@ class WidgetOptions$Mutation$UpdatePerson
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Mutation$UpdatePerson? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$UpdatePerson? onCompleted,
     graphql.OnMutationUpdate<Mutation$UpdatePerson>? update,
@@ -1634,7 +1604,7 @@ class WidgetOptions$Mutation$UpdatePerson
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -1663,7 +1633,6 @@ typedef RunMutation$Mutation$UpdatePerson
     = graphql.MultiSourceResult<Mutation$UpdatePerson> Function(
   Variables$Mutation$UpdatePerson, {
   Object? optimisticResult,
-  Mutation$UpdatePerson? typedOptimisticResult,
 });
 typedef Builder$Mutation$UpdatePerson = widgets.Widget Function(
   RunMutation$Mutation$UpdatePerson,
@@ -1687,12 +1656,10 @@ class Mutation$UpdatePerson$Widget
             (
               variables, {
               optimisticResult,
-              typedOptimisticResult,
             }) =>
                 run(
               variables.toJson(),
-              optimisticResult:
-                  optimisticResult ?? typedOptimisticResult?.toJson(),
+              optimisticResult: optimisticResult,
             ),
             result,
           ),
@@ -1702,7 +1669,7 @@ class Mutation$UpdatePerson$Widget
 class Mutation$UpdatePerson$updatePerson {
   Mutation$UpdatePerson$updatePerson({
     required this.full_name,
-    this.$__typename = 'Person',
+    required this.$__typename,
   });
 
   factory Mutation$UpdatePerson$updatePerson.fromJson(
@@ -1797,7 +1764,7 @@ class _CopyWithImpl$Mutation$UpdatePerson$updatePerson<TRes>
 
   final TRes Function(Mutation$UpdatePerson$updatePerson) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? full_name = _undefined,
@@ -1912,7 +1879,7 @@ class _CopyWithImpl$Variables$Subscription$WatchPerson<TRes>
 
   final TRes Function(Variables$Subscription$WatchPerson) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? id = _undefined}) =>
       _then(Variables$Subscription$WatchPerson._({
@@ -1933,7 +1900,7 @@ class _CopyWithStubImpl$Variables$Subscription$WatchPerson<TRes>
 class Subscription$WatchPerson {
   Subscription$WatchPerson({
     this.watchPerson,
-    this.$__typename = 'Subscription',
+    required this.$__typename,
   });
 
   factory Subscription$WatchPerson.fromJson(Map<String, dynamic> json) {
@@ -2030,7 +1997,7 @@ class _CopyWithImpl$Subscription$WatchPerson<TRes>
 
   final TRes Function(Subscription$WatchPerson) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? watchPerson = _undefined,
@@ -2135,7 +2102,6 @@ class Options$Subscription$WatchPerson
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Subscription$WatchPerson? typedOptimisticResult,
     graphql.Context? context,
   }) : super(
           variables: variables?.toJson() ?? {},
@@ -2143,7 +2109,7 @@ class Options$Subscription$WatchPerson
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           document: documentNodeSubscriptionWatchPerson,
           parserFn: _parserFn$Subscription$WatchPerson,
@@ -2159,7 +2125,6 @@ class WatchOptions$Subscription$WatchPerson
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Subscription$WatchPerson? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -2171,7 +2136,7 @@ class WatchOptions$Subscription$WatchPerson
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           document: documentNodeSubscriptionWatchPerson,
           pollInterval: pollInterval,
@@ -2228,7 +2193,7 @@ class Subscription$WatchPerson$Widget
 class Subscription$WatchPerson$watchPerson {
   Subscription$WatchPerson$watchPerson({
     required this.full_name,
-    this.$__typename = 'Person',
+    required this.$__typename,
   });
 
   factory Subscription$WatchPerson$watchPerson.fromJson(
@@ -2323,7 +2288,7 @@ class _CopyWithImpl$Subscription$WatchPerson$watchPerson<TRes>
 
   final TRes Function(Subscription$WatchPerson$watchPerson) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? full_name = _undefined,

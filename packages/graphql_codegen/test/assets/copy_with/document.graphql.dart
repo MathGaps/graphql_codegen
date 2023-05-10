@@ -4,7 +4,7 @@ class Query$Foobar {
   Query$Foobar({
     this.ts,
     this.tss,
-    this.$__typename = 'Query',
+    required this.$__typename,
   });
 
   factory Query$Foobar.fromJson(Map<String, dynamic> json) {
@@ -162,7 +162,7 @@ class _CopyWithImpl$Query$Foobar<TRes> implements CopyWith$Query$Foobar<TRes> {
 
   final TRes Function(Query$Foobar) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? ts = _undefined,
@@ -307,7 +307,7 @@ class Query$Foobar$ts {
   Query$Foobar$ts({
     this.t,
     this.name,
-    this.$__typename = 'TS',
+    required this.$__typename,
   });
 
   factory Query$Foobar$ts.fromJson(Map<String, dynamic> json) {
@@ -415,7 +415,7 @@ class _CopyWithImpl$Query$Foobar$ts<TRes>
 
   final TRes Function(Query$Foobar$ts) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? t = _undefined,
@@ -456,7 +456,7 @@ class _CopyWithStubImpl$Query$Foobar$ts<TRes>
 class Query$Foobar$ts$t {
   Query$Foobar$ts$t({
     this.name,
-    this.$__typename = 'TS',
+    required this.$__typename,
   });
 
   factory Query$Foobar$ts$t.fromJson(Map<String, dynamic> json) {
@@ -547,7 +547,7 @@ class _CopyWithImpl$Query$Foobar$ts$t<TRes>
 
   final TRes Function(Query$Foobar$ts$t) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? name = _undefined,
@@ -577,7 +577,7 @@ class _CopyWithStubImpl$Query$Foobar$ts$t<TRes>
 class Query$Foobar$tss {
   Query$Foobar$tss({
     required this.nameEnforced,
-    this.$__typename = 'TS',
+    required this.$__typename,
   });
 
   factory Query$Foobar$tss.fromJson(Map<String, dynamic> json) {
@@ -668,7 +668,7 @@ class _CopyWithImpl$Query$Foobar$tss<TRes>
 
   final TRes Function(Query$Foobar$tss) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? nameEnforced = _undefined,
@@ -697,4 +697,4 @@ class _CopyWithStubImpl$Query$Foobar$tss<TRes>
       _res;
 }
 
-const possibleTypesMap = <String, Set<String>>{};
+const possibleTypesMap = {};

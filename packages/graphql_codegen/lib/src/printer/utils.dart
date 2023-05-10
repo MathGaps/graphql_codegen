@@ -83,54 +83,46 @@ class NamePrinter {
 
   String printClassName(Name name) => printName(name);
 
-  String printEnumImportAlias(Name name) => printName(
-        name,
-        prefix: "EnumImport",
-      );
-
   String printClassExtensionName(Name name) =>
-      "UtilityExtension${separator}" + printName(name);
+      "UtilityExtension\$" + printName(name);
 
-  String printCopyWithClassName(String name) => 'CopyWith${separator}' + name;
+  String printCopyWithClassName(String name) => 'CopyWith\$' + name;
 
-  String printCopyWithImplClassName(String name) =>
-      '_CopyWithImpl${separator}' + name;
+  String printCopyWithImplClassName(String name) => '_CopyWithImpl\$' + name;
 
   String printCopyWithStubImplClassName(String name) =>
-      '_CopyWithStubImpl${separator}' + name;
+      '_CopyWithStubImpl\$' + name;
 
-  String printParserFnName(Name name) =>
-      "_parserFn${separator}${printName(name)}";
+  String printParserFnName(Name name) => "_parserFn\$${printName(name)}";
 
-  String printVariableClassName(Name name) =>
-      "Variables${separator}${printName(name)}";
+  String printVariableClassName(Name name) => "Variables\$${printName(name)}";
 
   String printGraphQLClientOptionsName(Name name) =>
-      "Options${separator}${printName(name)}";
+      "Options\$${printName(name)}";
 
   String printGraphQLClientWatchOptionsName(Name name) =>
-      "WatchOptions${separator}${printName(name)}";
+      "WatchOptions\$${printName(name)}";
 
   String printGraphQLClientFetchMoreOptionsName(Name name) =>
-      "FetchMoreOptions${separator}${printName(name)}";
+      "FetchMoreOptions\$${printName(name)}";
 
   String printGraphQLFlutterClientOptionsName(Name name) =>
-      "WidgetOptions${separator}${printName(name)}";
+      "WidgetOptions\$${printName(name)}";
 
   String printGraphQLFlutterClientRunMutationName(Name name) =>
-      "RunMutation${separator}${printName(name)}";
+      "RunMutation\$${printName(name)}";
 
   String printGraphQLFlutterClientBuilderName(Name name) =>
-      "Builder${separator}${printName(name)}";
+      "Builder\$${printName(name)}";
 
   String printLocalPropertyName(NameNode name, [String prefix = "l"]) =>
       "${prefix}\$" + printPropertyName(name);
 
   String printGraphQLFlutterClientOperationName(Name name) =>
-      "${printName(name)}${separator}Widget";
+      "${printName(name)}\$Widget";
 
   String printGraphQLFlutterClientMutationHookResultName(Name name) =>
-      "${printName(name)}${separator}HookResult";
+      "${printName(name)}\$HookResult";
 
   String printGraphQLFlutterClientMutationHookName(Name name) =>
       "use${printName(name)}";
@@ -148,16 +140,13 @@ class NamePrinter {
       "use${printName(name)}";
 
   String printGraphQLClientOnMutationCompleteName(Name name) =>
-      "OnMutationCompleted${separator}${printName(name)}";
-
-  String printGraphQLClientOnQueryCompleteName(Name name) =>
-      "OnQueryComplete${separator}${printName(name)}";
+      "OnMutationCompleted\$${printName(name)}";
 
   String printGraphQLClientExtensionName(Name name) =>
-      "ClientExtension${separator}${printName(name)}";
+      "ClientExtension\$${printName(name)}";
 
   String printGraphQLClientResultExtensionName(Name name) =>
-      "ResultExtension${separator}${printName(name)}";
+      "ResultExtension\$${printName(name)}";
 
   String printGraphQLClientExtensionMethodName(Name name) =>
       printName(name, isAction: true);
@@ -174,11 +163,15 @@ class NamePrinter {
   String printGraphQLClientResultExtensionGetterName(Name name) =>
       "parsedData" + printName(name);
 
+  String printFromJsonFactoryName(String name) => "_\$${name}FromJson";
+
+  String printToJsonFactoryName(String name) => "_\$${name}ToJson";
+
   String printFromJsonConverterFunctionName(Name name) =>
-      "fromJson${separator}${printClassName(name)}";
+      "fromJson\$${printClassName(name)}";
 
   String printToJsonConverterFunctionName(Name name) =>
-      "toJson${separator}${printClassName(name)}";
+      "toJson\$${printClassName(name)}";
 
   String printKeywordSafe(String name) =>
       _keywords.contains(name) ? "\$${name}" : name;

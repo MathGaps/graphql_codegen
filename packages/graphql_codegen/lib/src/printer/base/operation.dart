@@ -20,8 +20,7 @@ List<Spec> printOperationSpecs(PrintContext<ContextOperation> elementContext) {
         elementContext,
         operation,
       ),
-    if (clients.contains(GraphQLCodegenConfigClient.graphql) ||
-        clients.contains(GraphQLCodegenConfigClient.graphqlFlutter))
+    if (clients.contains(GraphQLCodegenConfigClient.graphql))
       ...printGraphQLClientSpecs(elementContext),
     if (clients.contains(GraphQLCodegenConfigClient.graphqlFlutter))
       ...printGraphQLFlutterSpecs(elementContext),

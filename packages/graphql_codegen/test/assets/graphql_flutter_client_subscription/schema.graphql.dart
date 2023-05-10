@@ -7,7 +7,7 @@ import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 class Subscription$NoArgs {
   Subscription$NoArgs({
     this.listenForChange,
-    this.$__typename = 'Subscription',
+    required this.$__typename,
   });
 
   factory Subscription$NoArgs.fromJson(Map<String, dynamic> json) {
@@ -102,7 +102,7 @@ class _CopyWithImpl$Subscription$NoArgs<TRes>
 
   final TRes Function(Subscription$NoArgs) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? listenForChange = _undefined,
@@ -190,14 +190,13 @@ class Options$Subscription$NoArgs
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Subscription$NoArgs? typedOptimisticResult,
     graphql.Context? context,
   }) : super(
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           document: documentNodeSubscriptionNoArgs,
           parserFn: _parserFn$Subscription$NoArgs,
@@ -212,7 +211,6 @@ class WatchOptions$Subscription$NoArgs
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Subscription$NoArgs? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -223,7 +221,7 @@ class WatchOptions$Subscription$NoArgs
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           document: documentNodeSubscriptionNoArgs,
           pollInterval: pollInterval,
@@ -275,7 +273,7 @@ class Subscription$NoArgs$Widget
 class Subscription$NoArgs$listenForChange {
   Subscription$NoArgs$listenForChange({
     required this.name,
-    this.$__typename = 'Change',
+    required this.$__typename,
   });
 
   factory Subscription$NoArgs$listenForChange.fromJson(
@@ -370,7 +368,7 @@ class _CopyWithImpl$Subscription$NoArgs$listenForChange<TRes>
 
   final TRes Function(Subscription$NoArgs$listenForChange) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? name = _undefined,
@@ -478,7 +476,7 @@ class _CopyWithImpl$Variables$Subscription$RequiredArg<TRes>
 
   final TRes Function(Variables$Subscription$RequiredArg) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? name = _undefined}) =>
       _then(Variables$Subscription$RequiredArg._({
@@ -499,7 +497,7 @@ class _CopyWithStubImpl$Variables$Subscription$RequiredArg<TRes>
 class Subscription$RequiredArg {
   Subscription$RequiredArg({
     this.listenForChange,
-    this.$__typename = 'Subscription',
+    required this.$__typename,
   });
 
   factory Subscription$RequiredArg.fromJson(Map<String, dynamic> json) {
@@ -596,7 +594,7 @@ class _CopyWithImpl$Subscription$RequiredArg<TRes>
 
   final TRes Function(Subscription$RequiredArg) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? listenForChange = _undefined,
@@ -702,7 +700,6 @@ class Options$Subscription$RequiredArg
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Subscription$RequiredArg? typedOptimisticResult,
     graphql.Context? context,
   }) : super(
           variables: variables.toJson(),
@@ -710,7 +707,7 @@ class Options$Subscription$RequiredArg
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           document: documentNodeSubscriptionRequiredArg,
           parserFn: _parserFn$Subscription$RequiredArg,
@@ -726,7 +723,6 @@ class WatchOptions$Subscription$RequiredArg
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Subscription$RequiredArg? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -738,7 +734,7 @@ class WatchOptions$Subscription$RequiredArg
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           document: documentNodeSubscriptionRequiredArg,
           pollInterval: pollInterval,
@@ -795,7 +791,7 @@ class Subscription$RequiredArg$Widget
 class Subscription$RequiredArg$listenForChange {
   Subscription$RequiredArg$listenForChange({
     required this.name,
-    this.$__typename = 'Change',
+    required this.$__typename,
   });
 
   factory Subscription$RequiredArg$listenForChange.fromJson(
@@ -890,7 +886,7 @@ class _CopyWithImpl$Subscription$RequiredArg$listenForChange<TRes>
 
   final TRes Function(Subscription$RequiredArg$listenForChange) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? name = _undefined,
@@ -1005,7 +1001,7 @@ class _CopyWithImpl$Variables$Subscription$OptionalArg<TRes>
 
   final TRes Function(Variables$Subscription$OptionalArg) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({Object? name = _undefined}) =>
       _then(Variables$Subscription$OptionalArg._({
@@ -1026,7 +1022,7 @@ class _CopyWithStubImpl$Variables$Subscription$OptionalArg<TRes>
 class Subscription$OptionalArg {
   Subscription$OptionalArg({
     this.listenForChange,
-    this.$__typename = 'Subscription',
+    required this.$__typename,
   });
 
   factory Subscription$OptionalArg.fromJson(Map<String, dynamic> json) {
@@ -1123,7 +1119,7 @@ class _CopyWithImpl$Subscription$OptionalArg<TRes>
 
   final TRes Function(Subscription$OptionalArg) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? listenForChange = _undefined,
@@ -1229,7 +1225,6 @@ class Options$Subscription$OptionalArg
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Subscription$OptionalArg? typedOptimisticResult,
     graphql.Context? context,
   }) : super(
           variables: variables?.toJson() ?? {},
@@ -1237,7 +1232,7 @@ class Options$Subscription$OptionalArg
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           document: documentNodeSubscriptionOptionalArg,
           parserFn: _parserFn$Subscription$OptionalArg,
@@ -1253,7 +1248,6 @@ class WatchOptions$Subscription$OptionalArg
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Subscription$OptionalArg? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -1265,7 +1259,7 @@ class WatchOptions$Subscription$OptionalArg
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          optimisticResult: optimisticResult,
           context: context,
           document: documentNodeSubscriptionOptionalArg,
           pollInterval: pollInterval,
@@ -1322,7 +1316,7 @@ class Subscription$OptionalArg$Widget
 class Subscription$OptionalArg$listenForChange {
   Subscription$OptionalArg$listenForChange({
     required this.name,
-    this.$__typename = 'Change',
+    required this.$__typename,
   });
 
   factory Subscription$OptionalArg$listenForChange.fromJson(
@@ -1417,7 +1411,7 @@ class _CopyWithImpl$Subscription$OptionalArg$listenForChange<TRes>
 
   final TRes Function(Subscription$OptionalArg$listenForChange) _then;
 
-  static const _undefined = <dynamic, dynamic>{};
+  static const _undefined = {};
 
   TRes call({
     Object? name = _undefined,
@@ -1446,4 +1440,4 @@ class _CopyWithStubImpl$Subscription$OptionalArg$listenForChange<TRes>
       _res;
 }
 
-const possibleTypesMap = <String, Set<String>>{};
+const possibleTypesMap = {};
