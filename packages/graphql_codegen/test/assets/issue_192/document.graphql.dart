@@ -3,7 +3,7 @@ import 'package:gql/ast.dart';
 class Query$Q {
   Query$Q({
     this.book,
-    required this.$__typename,
+    this.$__typename = 'Query',
   });
 
   factory Query$Q.fromJson(Map<String, dynamic> json) {
@@ -94,7 +94,7 @@ class _CopyWithImpl$Query$Q<TRes> implements CopyWith$Query$Q<TRes> {
 
   final TRes Function(Query$Q) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? book = _undefined,
@@ -262,6 +262,35 @@ extension UtilityExtension$Query$Q$book on Query$Q$book {
         this,
         (i) => i,
       );
+  _T when<_T>({
+    required _T Function(Query$Q$book$$TextBook) textBook,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "TextBook":
+        return textBook(this as Query$Q$book$$TextBook);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Query$Q$book$$TextBook)? textBook,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "TextBook":
+        if (textBook != null) {
+          return textBook(this as Query$Q$book$$TextBook);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$Q$book<TRes> {
@@ -288,7 +317,7 @@ class _CopyWithImpl$Query$Q$book<TRes> implements CopyWith$Query$Q$book<TRes> {
 
   final TRes Function(Query$Q$book) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? author = _undefined,
@@ -317,48 +346,48 @@ class _CopyWithStubImpl$Query$Q$book<TRes>
 
 class Query$Q$book$$TextBook implements Query$Q$book {
   Query$Q$book$$TextBook({
-    this.author,
-    required this.$__typename,
     this.courses,
+    this.$__typename = 'TextBook',
+    this.author,
   });
 
   factory Query$Q$book$$TextBook.fromJson(Map<String, dynamic> json) {
-    final l$author = json['author'];
-    final l$$__typename = json['__typename'];
     final l$courses = json['courses'];
+    final l$$__typename = json['__typename'];
+    final l$author = json['author'];
     return Query$Q$book$$TextBook(
-      author: (l$author as String?),
-      $__typename: (l$$__typename as String),
       courses: (l$courses as int?),
+      $__typename: (l$$__typename as String),
+      author: (l$author as String?),
     );
   }
 
-  final String? author;
+  final int? courses;
 
   final String $__typename;
 
-  final int? courses;
+  final String? author;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$author = author;
-    _resultData['author'] = l$author;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
     final l$courses = courses;
     _resultData['courses'] = l$courses;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    final l$author = author;
+    _resultData['author'] = l$author;
     return _resultData;
   }
 
   @override
   int get hashCode {
-    final l$author = author;
-    final l$$__typename = $__typename;
     final l$courses = courses;
+    final l$$__typename = $__typename;
+    final l$author = author;
     return Object.hashAll([
-      l$author,
-      l$$__typename,
       l$courses,
+      l$$__typename,
+      l$author,
     ]);
   }
 
@@ -371,9 +400,9 @@ class Query$Q$book$$TextBook implements Query$Q$book {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$author = author;
-    final lOther$author = other.author;
-    if (l$author != lOther$author) {
+    final l$courses = courses;
+    final lOther$courses = other.courses;
+    if (l$courses != lOther$courses) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -381,9 +410,9 @@ class Query$Q$book$$TextBook implements Query$Q$book {
     if (l$$__typename != lOther$$__typename) {
       return false;
     }
-    final l$courses = courses;
-    final lOther$courses = other.courses;
-    if (l$courses != lOther$courses) {
+    final l$author = author;
+    final lOther$author = other.author;
+    if (l$author != lOther$author) {
       return false;
     }
     return true;
@@ -408,9 +437,9 @@ abstract class CopyWith$Query$Q$book$$TextBook<TRes> {
       _CopyWithStubImpl$Query$Q$book$$TextBook;
 
   TRes call({
-    String? author,
-    String? $__typename,
     int? courses,
+    String? $__typename,
+    String? author,
   });
 }
 
@@ -425,19 +454,19 @@ class _CopyWithImpl$Query$Q$book$$TextBook<TRes>
 
   final TRes Function(Query$Q$book$$TextBook) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? author = _undefined,
-    Object? $__typename = _undefined,
     Object? courses = _undefined,
+    Object? $__typename = _undefined,
+    Object? author = _undefined,
   }) =>
       _then(Query$Q$book$$TextBook(
-        author: author == _undefined ? _instance.author : (author as String?),
+        courses: courses == _undefined ? _instance.courses : (courses as int?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
-        courses: courses == _undefined ? _instance.courses : (courses as int?),
+        author: author == _undefined ? _instance.author : (author as String?),
       ));
 }
 
@@ -448,13 +477,13 @@ class _CopyWithStubImpl$Query$Q$book$$TextBook<TRes>
   TRes _res;
 
   call({
-    String? author,
-    String? $__typename,
     int? courses,
+    String? $__typename,
+    String? author,
   }) =>
       _res;
 }
 
-const possibleTypesMap = {
+const possibleTypesMap = <String, Set<String>>{
   'Book': {'TextBook'}
 };

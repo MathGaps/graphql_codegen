@@ -3,7 +3,7 @@ import 'package:gql/ast.dart';
 class Query$FetchCount {
   Query$FetchCount({
     this.fetchCount,
-    required this.$__typename,
+    this.$__typename = 'Query',
   });
 
   factory Query$FetchCount.fromJson(Map<String, dynamic> json) {
@@ -94,7 +94,7 @@ class _CopyWithImpl$Query$FetchCount<TRes>
 
   final TRes Function(Query$FetchCount) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? fetchCount = _undefined,
@@ -147,4 +147,4 @@ const documentNodeQueryFetchCount = DocumentNode(definitions: [
     ]),
   ),
 ]);
-const possibleTypesMap = {};
+const possibleTypesMap = <String, Set<String>>{};

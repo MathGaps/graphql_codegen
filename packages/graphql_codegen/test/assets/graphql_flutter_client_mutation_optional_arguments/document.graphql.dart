@@ -90,7 +90,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateSOptional<TRes>
 
   final TRes Function(Variables$Mutation$UpdateSOptional) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? name = _undefined}) =>
       _then(Variables$Mutation$UpdateSOptional._({
@@ -181,7 +181,7 @@ class _CopyWithImpl$Mutation$UpdateSOptional<TRes>
 
   final TRes Function(Mutation$UpdateSOptional) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? s = _undefined}) => _then(Mutation$UpdateSOptional(
       s: s == _undefined ? _instance.s : (s as String?)));
@@ -232,7 +232,7 @@ Mutation$UpdateSOptional _parserFn$Mutation$UpdateSOptional(
         Map<String, dynamic> data) =>
     Mutation$UpdateSOptional.fromJson(data);
 typedef OnMutationCompleted$Mutation$UpdateSOptional = FutureOr<void> Function(
-  dynamic,
+  Map<String, dynamic>?,
   Mutation$UpdateSOptional?,
 );
 
@@ -245,6 +245,7 @@ class Options$Mutation$UpdateSOptional
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$UpdateSOptional? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$UpdateSOptional? onCompleted,
     graphql.OnMutationUpdate<Mutation$UpdateSOptional>? update,
@@ -256,7 +257,7 @@ class Options$Mutation$UpdateSOptional
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -292,6 +293,7 @@ class WatchOptions$Mutation$UpdateSOptional
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$UpdateSOptional? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -303,7 +305,7 @@ class WatchOptions$Mutation$UpdateSOptional
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeMutationUpdateSOptional,
           pollInterval: pollInterval,
@@ -340,9 +342,10 @@ Mutation$UpdateSOptional$HookResult useMutation$UpdateSOptional(
   final result = graphql_flutter
       .useMutation(options ?? WidgetOptions$Mutation$UpdateSOptional());
   return Mutation$UpdateSOptional$HookResult(
-    ({variables, optimisticResult}) => result.runMutation(
+    ({variables, optimisticResult, typedOptimisticResult}) =>
+        result.runMutation(
       variables?.toJson() ?? const {},
-      optimisticResult: optimisticResult,
+      optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
     ),
     result.result,
   );
@@ -362,6 +365,7 @@ class WidgetOptions$Mutation$UpdateSOptional
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$UpdateSOptional? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$UpdateSOptional? onCompleted,
     graphql.OnMutationUpdate<Mutation$UpdateSOptional>? update,
@@ -372,7 +376,7 @@ class WidgetOptions$Mutation$UpdateSOptional
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -403,6 +407,7 @@ typedef RunMutation$Mutation$UpdateSOptional
     = graphql.MultiSourceResult<Mutation$UpdateSOptional> Function({
   Variables$Mutation$UpdateSOptional? variables,
   Object? optimisticResult,
+  Mutation$UpdateSOptional? typedOptimisticResult,
 });
 typedef Builder$Mutation$UpdateSOptional = widgets.Widget Function(
   RunMutation$Mutation$UpdateSOptional,
@@ -426,14 +431,16 @@ class Mutation$UpdateSOptional$Widget
             ({
               variables,
               optimisticResult,
+              typedOptimisticResult,
             }) =>
                 run(
               variables?.toJson() ?? const {},
-              optimisticResult: optimisticResult,
+              optimisticResult:
+                  optimisticResult ?? typedOptimisticResult?.toJson(),
             ),
             result,
           ),
         );
 }
 
-const possibleTypesMap = {};
+const possibleTypesMap = <String, Set<String>>{};

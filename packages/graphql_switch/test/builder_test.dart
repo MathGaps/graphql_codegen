@@ -5,8 +5,8 @@ import 'package:build/build.dart';
 import 'package:build_test/build_test.dart';
 import 'package:graphql_switch/builder.dart';
 import 'package:path/path.dart';
-import 'package:test/scaffolding.dart';
 import 'package:path/path.dart' as path;
+import 'package:test/scaffolding.dart';
 
 final p = path.Context(style: path.Style.posix);
 
@@ -85,8 +85,8 @@ void main() {
                 : entry.key.path.replaceAll(RegExp("^lib/"), "");
             if (utf8.decode(entry.value) != files[file]) {
               await (await File(
-                "${testSet.absolute.path}/${file}", // TODO revert
-                // "${testSet.absolute.path}/${file}.expected",
+                // "${testSet.absolute.path}/${file}", // TODO revert
+                "${testSet.absolute.path}/${file}.expected",
               ).create(recursive: true))
                   .writeAsBytes(entry.value);
             }

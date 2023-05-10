@@ -4,7 +4,7 @@ import 'package:gql/ast.dart';
 class Query$FetchShouldRender {
   Query$FetchShouldRender({
     required this.shouldRender,
-    required this.$__typename,
+    this.$__typename = 'Query',
   });
 
   factory Query$FetchShouldRender.fromJson(Map<String, dynamic> json) {
@@ -98,7 +98,7 @@ class _CopyWithImpl$Query$FetchShouldRender<TRes>
 
   final TRes Function(Query$FetchShouldRender) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? shouldRender = _undefined,
@@ -171,7 +171,7 @@ const documentNodeQueryFetchShouldRender = DocumentNode(definitions: [
   ),
   fragmentDefinitionCompositeCondition,
   fragmentDefinitionTimeCondition,
-  fragmentDefinitionCondition,
   fragmentDefinitionAndCondition,
+  fragmentDefinitionCondition,
   fragmentDefinitionNonCompositeCondition,
 ]);

@@ -24,6 +24,26 @@ Map<String, dynamic> _$GraphQLCodegenConfigScalarToJson(
       'toJsonFunctionName': instance.toJsonFunctionName,
     };
 
+GraphQLCodegenConfigEnum _$GraphQLCodegenConfigEnumFromJson(
+        Map<String, dynamic> json) =>
+    GraphQLCodegenConfigEnum(
+      type: json['type'] as String?,
+      import: json['import'] as String?,
+      fromJsonFunctionName: json['fromJsonFunctionName'] as String?,
+      toJsonFunctionName: json['toJsonFunctionName'] as String?,
+      fallbackEnumValue: json['fallbackEnumValue'] as String?,
+    );
+
+Map<String, dynamic> _$GraphQLCodegenConfigEnumToJson(
+        GraphQLCodegenConfigEnum instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+      'import': instance.import,
+      'fromJsonFunctionName': instance.fromJsonFunctionName,
+      'toJsonFunctionName': instance.toJsonFunctionName,
+      'fallbackEnumValue': instance.fallbackEnumValue,
+    };
+
 GraphQLCodegenConfig _$GraphQLCodegenConfigFromJson(
         Map<String, dynamic> json) =>
     GraphQLCodegenConfig(
@@ -36,6 +56,11 @@ GraphQLCodegenConfig _$GraphQLCodegenConfigFromJson(
       scalars: (json['scalars'] as Map<String, dynamic>?)?.map(
             (k, e) => MapEntry(k,
                 GraphQLCodegenConfigScalar.fromJson(e as Map<String, dynamic>)),
+          ) ??
+          const {},
+      enums: (json['enums'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(k,
+                GraphQLCodegenConfigEnum.fromJson(e as Map<String, dynamic>)),
           ) ??
           const {},
       addTypename: json['addTypename'] as bool? ?? true,
@@ -70,6 +95,7 @@ Map<String, dynamic> _$GraphQLCodegenConfigToJson(
           .map((e) => _$GraphQLCodegenConfigClientEnumMap[e]!)
           .toList(),
       'scalars': instance.scalars,
+      'enums': instance.enums,
       'addTypename': instance.addTypename,
       'assetsPath': instance.assetsPath,
       'scopes': instance.scopes,

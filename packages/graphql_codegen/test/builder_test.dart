@@ -5,8 +5,8 @@ import 'package:build/build.dart';
 import 'package:build_test/build_test.dart';
 import 'package:graphql_codegen/builder.dart';
 import 'package:path/path.dart';
-import 'package:test/scaffolding.dart';
 import 'package:path/path.dart' as path;
+import 'package:test/scaffolding.dart';
 
 final p = path.Context(style: path.Style.posix);
 
@@ -92,6 +92,7 @@ void main() {
             if (utf8.decode(entry.value) != files[file]) {
               await (await File(
                 "${testSet.absolute.path}/${file}.expected",
+                // "${testSet.absolute.path}/${file}",
               ).create(recursive: true))
                   .writeAsBytes(entry.value);
             }

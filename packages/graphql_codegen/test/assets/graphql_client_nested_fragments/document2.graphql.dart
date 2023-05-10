@@ -4,7 +4,7 @@ import 'package:graphql/client.dart' as graphql;
 class Fragment$F2 {
   Fragment$F2({
     this.name,
-    required this.$__typename,
+    this.$__typename = 'T1',
   });
 
   factory Fragment$F2.fromJson(Map<String, dynamic> json) {
@@ -92,7 +92,7 @@ class _CopyWithImpl$Fragment$F2<TRes> implements CopyWith$Fragment$F2<TRes> {
 
   final TRes Function(Fragment$F2) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? name = _undefined,

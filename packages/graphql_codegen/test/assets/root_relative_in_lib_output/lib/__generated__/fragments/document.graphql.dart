@@ -3,7 +3,7 @@ import 'package:gql/ast.dart';
 class Fragment$F {
   Fragment$F({
     this.name,
-    required this.$__typename,
+    this.$__typename = 'Query',
   });
 
   factory Fragment$F.fromJson(Map<String, dynamic> json) {
@@ -91,7 +91,7 @@ class _CopyWithImpl$Fragment$F<TRes> implements CopyWith$Fragment$F<TRes> {
 
   final TRes Function(Fragment$F) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? name = _undefined,

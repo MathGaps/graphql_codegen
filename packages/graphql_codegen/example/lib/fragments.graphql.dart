@@ -11,7 +11,7 @@ class Fragment$PersonSummary {
     this.eventsOfEvents,
     this.parents,
     this.favParent,
-    required this.$__typename,
+    this.$__typename = 'Person',
   });
 
   factory Fragment$PersonSummary.fromJson(Map<String, dynamic> json) {
@@ -259,7 +259,7 @@ class _CopyWithImpl$Fragment$PersonSummary<TRes>
 
   final TRes Function(Fragment$PersonSummary) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? nickname = _undefined,
@@ -470,7 +470,7 @@ extension ClientExtension$Fragment$PersonSummary on graphql.GraphQLClient {
 class Fragment$PersonParent {
   Fragment$PersonParent({
     required this.name,
-    required this.$__typename,
+    this.$__typename = 'Person',
   });
 
   factory Fragment$PersonParent.fromJson(Map<String, dynamic> json) {
@@ -561,7 +561,7 @@ class _CopyWithImpl$Fragment$PersonParent<TRes>
 
   final TRes Function(Fragment$PersonParent) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? name = _undefined,

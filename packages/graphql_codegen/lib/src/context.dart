@@ -168,6 +168,9 @@ class Schema<TKey extends Object> {
   final BuiltMap<TKey, DocumentNode> entries;
   Iterable<DefinitionNode>? _cachedDefinitions;
   Map<String, TypeDefinitionNode>? _cachedTypeDefinitionsMap;
+  Map<DefinitionNode, TKey>? _cachedDefinitionNodeToKeyMap;
+  Map<String, Map<String, FieldDefinitionNode>> _cachedFields = {};
+
   final String Function(TKey) lookupPath;
 
   Schema(
@@ -204,17 +207,16 @@ class Schema<TKey extends Object> {
   }
 
   String? lookupPathFromDefinitionNode(DefinitionNode node) {
-    for (final entry in entries.entries) {
-      if (entry.value.definitions.contains(node)) {
-        final key = entry.key;
-        if (key is AssetId && key.package.startsWith('package:')) {
-          return '${key.package}/${key.path}.dart';
-        } else {
-          return lookupPath(key);
-        }
-      }
+    var lCached = _cachedDefinitionNodeToKeyMap;
+    if (lCached == null) {
+      lCached = _cachedDefinitionNodeToKeyMap = Map.identity();
+      lCached.addEntries(
+        entries.entries
+            .expand((element) => element.value.definitions.map((e) => MapEntry(e, element.key))),
+      );
     }
-    return null;
+    final key = lCached[node];
+    return key == null ? null : lookupPath(key);
   }
 
   TType? lookupType<TType extends TypeDefinitionNode>(NameNode name) {
@@ -263,16 +265,18 @@ class Schema<TKey extends Object> {
   }
 
   TypeDefinitionNode? lookupOperationType(OperationType operationType) {
-    final opNode = definitions
-        .whereType<SchemaDefinitionNode>()
-        .map<SchemaDefinitionNode?>((e) => e)
-        .firstWhere((element) => element != null, orElse: () => null)
-        ?.operationTypes
-        .map<OperationTypeDefinitionNode?>((e) => e)
-        .firstWhere(
-          (element) => element != null && element.operation == operationType,
-          orElse: () => null,
-        );
+    final opNode = definitions.expand<OperationTypeDefinitionNode?>((e) {
+      if (e is SchemaDefinitionNode) {
+        return e.operationTypes;
+      }
+      if (e is SchemaExtensionNode) {
+        return e.operationTypes;
+      }
+      return [];
+    }).firstWhere(
+      (element) => element != null && element.operation == operationType,
+      orElse: () => null,
+    );
 
     final typeName = opNode?.type.name ?? _operationTypeToDefaultClass(operationType);
 
@@ -297,23 +301,54 @@ class Schema<TKey extends Object> {
     return lookupFieldDefinitionNode(onType, node)?.type;
   }
 
-  FieldDefinitionNode? lookupFieldDefinitionNode(TypeDefinitionNode onType, NameNode field) {
+  List<FieldDefinitionNode> _listObjectTypeDefinitionFields(
+    ObjectTypeDefinitionNode node,
+  ) {
+    return [
+      ...node.fields,
+      ...definitions.whereType<ObjectTypeExtensionNode>().expand((element) => element.fields)
+    ];
+  }
+
+  List<FieldDefinitionNode> _listInterfaceTypeDefinitionFields(
+    InterfaceTypeDefinitionNode node,
+  ) {
+    return [
+      ...node.fields,
+      ...definitions.whereType<InterfaceTypeExtensionNode>().expand((element) => element.fields)
+    ];
+  }
+
+  Map<String, FieldDefinitionNode> _lookupFieldDefinitionsForTypeDefinitionNode(
+    TypeDefinitionNode onType,
+  ) {
+    if (_cachedFields.containsKey(onType.name.value)) {
+      return _cachedFields[onType.name.value] ?? {};
+    }
     List<FieldDefinitionNode> fields;
     if (onType is ObjectTypeDefinitionNode) {
-      fields = onType.fields;
+      fields = _listObjectTypeDefinitionFields(onType);
     } else if (onType is InterfaceTypeDefinitionNode) {
-      fields = onType.fields;
+      fields = _listInterfaceTypeDefinitionFields(onType);
     } else if (onType is UnionTypeDefinitionNode) {
       fields = [];
     } else {
-      return null;
+      return {};
     }
-    final currentFieldDefinition =
-        [...fields, ..._INTROSPECTION_FIELDS].whereType<FieldDefinitionNode?>().firstWhere(
-              (element) => element != null && element.name.value == field.value,
-              orElse: () => null,
-            );
-    return currentFieldDefinition;
+    final fieldMap = Map.fromEntries(
+      [...fields, ..._INTROSPECTION_FIELDS].map(
+        (e) => MapEntry(e.name.value, e),
+      ),
+    );
+    _cachedFields[onType.name.value] = fieldMap;
+    return fieldMap;
+  }
+
+  FieldDefinitionNode? lookupFieldDefinitionNode(
+    TypeDefinitionNode onType,
+    NameNode field,
+  ) {
+    return _lookupFieldDefinitionsForTypeDefinitionNode(onType)[field.value];
   }
 
   TypeNode? lookupTypeNodeForArgument(
@@ -343,6 +378,13 @@ class Schema<TKey extends Object> {
       return type;
     }
     throw StateError("Invalid node type");
+  }
+
+  List<EnumValueDefinitionNode> lookupEnumValueDefinitions(EnumTypeDefinitionNode node) {
+    return [
+      ...node.values,
+      ...definitions.whereType<EnumTypeExtensionNode>().expand((element) => element.values)
+    ];
   }
 }
 
@@ -477,7 +519,13 @@ abstract class Context<TKey extends Object, TType extends TypeDefinitionNode> {
   String get filePath => schema.lookupPath(key);
 
   Iterable<ContextFragment<TKey>> get fragments {
-    return _fragments.map((e) => _allContexts[e]!).whereType<ContextFragment<TKey>>();
+    return _fragments.map((e) {
+      final context = _allContexts[e];
+      if (context == null) {
+        throw StateError('Failed to find context for fragment ${e._key}');
+      }
+      return context;
+    }).whereType<ContextFragment<TKey>>();
   }
 
   ContextOperation<TKey>? get extendsContextOperation {
@@ -491,7 +539,7 @@ abstract class Context<TKey extends Object, TType extends TypeDefinitionNode> {
   }
 
   Context<TKey, TypeDefinitionNode>? get extendsContext {
-    return (extendsContextOperation ?? extendsContextFragment)?.resolvedContext;
+    return extendsContextOperation ?? extendsContextFragment;
   }
 
   void _addContext(Context<TKey, TypeDefinitionNode> c) {
@@ -500,10 +548,7 @@ abstract class Context<TKey extends Object, TType extends TypeDefinitionNode> {
     _childContexts[c.path] = c;
   }
 
-  bool hasContextFragment(Name name) => _lookupContextFragment(name) != null;
-
-  Name contextFragmentNameOrFallback(Name name, Name fallback) =>
-      hasContextFragment(name) ? name : fallback;
+  bool hasContextFragment(Name name) => _lookupAllContextFragment(name) != null;
 
   ContextRoot<TKey> rootContext() => ContextRoot<TKey>(
         key: key,
@@ -697,7 +742,6 @@ abstract class Context<TKey extends Object, TType extends TypeDefinitionNode> {
       final replacement = _lookupAllContext(newName);
       return replacement?.resolvedContext;
     }
-    if (extendsContext != null) return null;
     if (_selections.whereType<InlineFragmentNode>().isNotEmpty) {
       return null;
     }
@@ -809,6 +853,8 @@ class ContextEnum<TKey extends Object> extends Context<TKey, EnumTypeDefinitionN
   NameNode get currentTypeName => currentType.name;
 
   final bool isDefinitionContext = true;
+
+  List<EnumValueDefinitionNode> get values => schema.lookupEnumValueDefinitions(currentType);
 }
 
 class ContextInput<TKey extends Object> extends Context<TKey, InputObjectTypeDefinitionNode> {

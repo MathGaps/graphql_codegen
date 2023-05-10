@@ -71,6 +71,35 @@ extension UtilityExtension$Fragment$F on Fragment$F {
         this,
         (i) => i,
       );
+  _T when<_T>({
+    required _T Function(Fragment$F$$T) t,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "T":
+        return t(this as Fragment$F$$T);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$F$$T)? t,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "T":
+        if (t != null) {
+          return t(this as Fragment$F$$T);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$F<TRes> {
@@ -97,7 +126,7 @@ class _CopyWithImpl$Fragment$F<TRes> implements CopyWith$Fragment$F<TRes> {
 
   final TRes Function(Fragment$F) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? $__typename = _undefined,
@@ -186,50 +215,50 @@ const documentNodeFragmentF = DocumentNode(definitions: [
 
 class Fragment$F$$T implements Fragment$F {
   Fragment$F$$T({
-    required this.$__typename,
-    this.name,
+    this.$__typename = 'T',
     this.t,
+    this.name,
   });
 
   factory Fragment$F$$T.fromJson(Map<String, dynamic> json) {
     final l$$__typename = json['__typename'];
-    final l$name = json['name'];
     final l$t = json['t'];
+    final l$name = json['name'];
     return Fragment$F$$T(
       $__typename: (l$$__typename as String),
-      name: (l$name as String?),
       t: l$t == null
           ? null
           : Fragment$F$$T$t.fromJson((l$t as Map<String, dynamic>)),
+      name: (l$name as String?),
     );
   }
 
   final String $__typename;
 
-  final String? name;
-
   final Fragment$F$$T$t? t;
+
+  final String? name;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
-    final l$name = name;
-    _resultData['name'] = l$name;
     final l$t = t;
     _resultData['t'] = l$t?.toJson();
+    final l$name = name;
+    _resultData['name'] = l$name;
     return _resultData;
   }
 
   @override
   int get hashCode {
     final l$$__typename = $__typename;
-    final l$name = name;
     final l$t = t;
+    final l$name = name;
     return Object.hashAll([
       l$$__typename,
-      l$name,
       l$t,
+      l$name,
     ]);
   }
 
@@ -246,14 +275,14 @@ class Fragment$F$$T implements Fragment$F {
     if (l$$__typename != lOther$$__typename) {
       return false;
     }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
     final l$t = t;
     final lOther$t = other.t;
     if (l$t != lOther$t) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
       return false;
     }
     return true;
@@ -278,8 +307,8 @@ abstract class CopyWith$Fragment$F$$T<TRes> {
 
   TRes call({
     String? $__typename,
-    String? name,
     Fragment$F$$T$t? t,
+    String? name,
   });
   CopyWith$Fragment$F$$T$t<TRes> get t;
 }
@@ -295,19 +324,19 @@ class _CopyWithImpl$Fragment$F$$T<TRes>
 
   final TRes Function(Fragment$F$$T) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? $__typename = _undefined,
-    Object? name = _undefined,
     Object? t = _undefined,
+    Object? name = _undefined,
   }) =>
       _then(Fragment$F$$T(
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
-        name: name == _undefined ? _instance.name : (name as String?),
         t: t == _undefined ? _instance.t : (t as Fragment$F$$T$t?),
+        name: name == _undefined ? _instance.name : (name as String?),
       ));
   CopyWith$Fragment$F$$T$t<TRes> get t {
     final local$t = _instance.t;
@@ -325,8 +354,8 @@ class _CopyWithStubImpl$Fragment$F$$T<TRes>
 
   call({
     String? $__typename,
-    String? name,
     Fragment$F$$T$t? t,
+    String? name,
   }) =>
       _res;
   CopyWith$Fragment$F$$T$t<TRes> get t => CopyWith$Fragment$F$$T$t.stub(_res);
@@ -403,7 +432,7 @@ class _CopyWithImpl$Fragment$F$$T$t<TRes>
 
   final TRes Function(Fragment$F$$T$t) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? name = _undefined}) => _then(Fragment$F$$T$t(
       name: name == _undefined ? _instance.name : (name as String?)));
@@ -490,7 +519,7 @@ class _CopyWithImpl$Query$Q<TRes> implements CopyWith$Query$Q<TRes> {
 
   final TRes Function(Query$Q) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? t = _undefined}) =>
       _then(Query$Q(t: t == _undefined ? _instance.t : (t as Query$Q$t?)));
@@ -544,7 +573,7 @@ const documentNodeQueryQ = DocumentNode(definitions: [
 
 class Query$Q$t implements Fragment$F$$T {
   Query$Q$t({
-    required this.$__typename,
+    this.$__typename = 'T',
     this.name,
     this.t,
   });
@@ -651,7 +680,7 @@ class _CopyWithImpl$Query$Q$t<TRes> implements CopyWith$Query$Q$t<TRes> {
 
   final TRes Function(Query$Q$t) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? $__typename = _undefined,
@@ -755,7 +784,7 @@ class _CopyWithImpl$Query$Q$t$t<TRes> implements CopyWith$Query$Q$t$t<TRes> {
 
   final TRes Function(Query$Q$t$t) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? name = _undefined}) => _then(Query$Q$t$t(
       name: name == _undefined ? _instance.name : (name as String?)));
@@ -770,6 +799,6 @@ class _CopyWithStubImpl$Query$Q$t$t<TRes>
   call({String? name}) => _res;
 }
 
-const possibleTypesMap = {
+const possibleTypesMap = <String, Set<String>>{
   'I': {'T'}
 };

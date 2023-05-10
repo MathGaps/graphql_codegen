@@ -72,7 +72,7 @@ class _CopyWithImpl$Fragment$F<TRes> implements CopyWith$Fragment$F<TRes> {
 
   final TRes Function(Fragment$F) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? t = _undefined}) => _then(
       Fragment$F(t: t == _undefined ? _instance.t : (t as Fragment$F$t?)));
@@ -203,7 +203,7 @@ class _CopyWithImpl$Fragment$F$t<TRes> implements CopyWith$Fragment$F$t<TRes> {
 
   final TRes Function(Fragment$F$t) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? t = _undefined}) => _then(
       Fragment$F$t(t: t == _undefined ? _instance.t : (t as Fragment$F$t$t?)));
@@ -226,7 +226,7 @@ class _CopyWithStubImpl$Fragment$F$t<TRes>
 }
 
 class Fragment$F$t$t {
-  Fragment$F$t$t({required this.$__typename});
+  Fragment$F$t$t({this.$__typename = 'T'});
 
   factory Fragment$F$t$t.fromJson(Map<String, dynamic> json) {
     final l$$__typename = json['__typename'];
@@ -296,7 +296,7 @@ class _CopyWithImpl$Fragment$F$t$t<TRes>
 
   final TRes Function(Fragment$F$t$t) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? $__typename = _undefined}) => _then(Fragment$F$t$t(
       $__typename: $__typename == _undefined || $__typename == null
@@ -385,7 +385,7 @@ class _CopyWithImpl$Query$Q<TRes> implements CopyWith$Query$Q<TRes> {
 
   final TRes Function(Query$Q) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? t = _undefined}) =>
       _then(Query$Q(t: t == _undefined ? _instance.t : (t as Query$Q$t?)));
@@ -537,7 +537,7 @@ class _CopyWithImpl$Query$Q$t<TRes> implements CopyWith$Query$Q$t<TRes> {
 
   final TRes Function(Query$Q$t) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? t = _undefined}) =>
       _then(Query$Q$t(t: t == _undefined ? _instance.t : (t as Query$Q$t$t?)));
@@ -630,7 +630,7 @@ class _CopyWithImpl$Query$Q$t$t<TRes> implements CopyWith$Query$Q$t$t<TRes> {
 
   final TRes Function(Query$Q$t$t) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? t = _undefined}) => _then(
       Query$Q$t$t(t: t == _undefined ? _instance.t : (t as Query$Q$t$t$t?)));
@@ -655,7 +655,7 @@ class _CopyWithStubImpl$Query$Q$t$t<TRes>
 class Query$Q$t$t$t implements Fragment$F$t, Fragment$F$t$t {
   Query$Q$t$t$t({
     this.t,
-    required this.$__typename,
+    this.$__typename = 'T',
   });
 
   factory Query$Q$t$t$t.fromJson(Map<String, dynamic> json) {
@@ -748,7 +748,7 @@ class _CopyWithImpl$Query$Q$t$t$t<TRes>
 
   final TRes Function(Query$Q$t$t$t) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? t = _undefined,
@@ -783,7 +783,7 @@ class _CopyWithStubImpl$Query$Q$t$t$t<TRes>
 }
 
 class Query$Q$t$t$t$t implements Fragment$F$t$t {
-  Query$Q$t$t$t$t({required this.$__typename});
+  Query$Q$t$t$t$t({this.$__typename = 'T'});
 
   factory Query$Q$t$t$t$t.fromJson(Map<String, dynamic> json) {
     final l$$__typename = json['__typename'];
@@ -853,7 +853,7 @@ class _CopyWithImpl$Query$Q$t$t$t$t<TRes>
 
   final TRes Function(Query$Q$t$t$t$t) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? $__typename = _undefined}) => _then(Query$Q$t$t$t$t(
       $__typename: $__typename == _undefined || $__typename == null
@@ -942,7 +942,7 @@ class _CopyWithImpl$Query$Q2<TRes> implements CopyWith$Query$Q2<TRes> {
 
   final TRes Function(Query$Q2) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? t = _undefined}) =>
       _then(Query$Q2(t: t == _undefined ? _instance.t : (t as Query$Q2$t?)));
@@ -1094,7 +1094,7 @@ class _CopyWithImpl$Query$Q2$t<TRes> implements CopyWith$Query$Q2$t<TRes> {
 
   final TRes Function(Query$Q2$t) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? t = _undefined}) => _then(
       Query$Q2$t(t: t == _undefined ? _instance.t : (t as Query$Q2$t$t?)));
@@ -1187,7 +1187,7 @@ class _CopyWithImpl$Query$Q2$t$t<TRes> implements CopyWith$Query$Q2$t$t<TRes> {
 
   final TRes Function(Query$Q2$t$t) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? t = _undefined}) => _then(
       Query$Q2$t$t(t: t == _undefined ? _instance.t : (t as Query$Q2$t$t$t?)));
@@ -1211,7 +1211,7 @@ class _CopyWithStubImpl$Query$Q2$t$t<TRes>
 
 class Query$Q2$t$t$t implements Fragment$F$t$t, Fragment$F$t {
   Query$Q2$t$t$t({
-    required this.$__typename,
+    this.$__typename = 'T',
     this.t,
   });
 
@@ -1306,7 +1306,7 @@ class _CopyWithImpl$Query$Q2$t$t$t<TRes>
 
   final TRes Function(Query$Q2$t$t$t) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? $__typename = _undefined,
@@ -1341,7 +1341,7 @@ class _CopyWithStubImpl$Query$Q2$t$t$t<TRes>
 }
 
 class Query$Q2$t$t$t$t implements Fragment$F$t$t {
-  Query$Q2$t$t$t$t({required this.$__typename});
+  Query$Q2$t$t$t$t({this.$__typename = 'T'});
 
   factory Query$Q2$t$t$t$t.fromJson(Map<String, dynamic> json) {
     final l$$__typename = json['__typename'];
@@ -1411,7 +1411,7 @@ class _CopyWithImpl$Query$Q2$t$t$t$t<TRes>
 
   final TRes Function(Query$Q2$t$t$t$t) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? $__typename = _undefined}) => _then(Query$Q2$t$t$t$t(
       $__typename: $__typename == _undefined || $__typename == null
@@ -1428,4 +1428,4 @@ class _CopyWithStubImpl$Query$Q2$t$t$t$t<TRes>
   call({String? $__typename}) => _res;
 }
 
-const possibleTypesMap = {};
+const possibleTypesMap = <String, Set<String>>{};

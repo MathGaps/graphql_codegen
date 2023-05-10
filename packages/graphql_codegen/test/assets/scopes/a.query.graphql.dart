@@ -4,7 +4,7 @@ import 'package:gql/ast.dart';
 class Query$FetchPerson {
   Query$FetchPerson({
     this.fetchPerson,
-    required this.$__typename,
+    this.$__typename = 'Query',
   });
 
   factory Query$FetchPerson.fromJson(Map<String, dynamic> json) {
@@ -99,7 +99,7 @@ class _CopyWithImpl$Query$FetchPerson<TRes>
 
   final TRes Function(Query$FetchPerson) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? fetchPerson = _undefined,
@@ -188,7 +188,7 @@ class Query$FetchPerson$fetchPerson {
   Query$FetchPerson$fetchPerson({
     this.name,
     required this.status,
-    required this.$__typename,
+    this.$__typename = 'Person',
   });
 
   factory Query$FetchPerson$fetchPerson.fromJson(Map<String, dynamic> json) {
@@ -295,7 +295,7 @@ class _CopyWithImpl$Query$FetchPerson$fetchPerson<TRes>
 
   final TRes Function(Query$FetchPerson$fetchPerson) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? name = _undefined,

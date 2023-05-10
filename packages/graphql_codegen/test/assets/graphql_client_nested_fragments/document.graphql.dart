@@ -6,7 +6,7 @@ class Fragment$F1 {
   Fragment$F1({
     this.name,
     this.field,
-    required this.$__typename,
+    this.$__typename = 'T1',
   });
 
   factory Fragment$F1.fromJson(Map<String, dynamic> json) {
@@ -111,7 +111,7 @@ class _CopyWithImpl$Fragment$F1<TRes> implements CopyWith$Fragment$F1<TRes> {
 
   final TRes Function(Fragment$F1) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? name = _undefined,
@@ -232,4 +232,4 @@ extension ClientExtension$Fragment$F1 on graphql.GraphQLClient {
   }
 }
 
-const possibleTypesMap = {};
+const possibleTypesMap = <String, Set<String>>{};

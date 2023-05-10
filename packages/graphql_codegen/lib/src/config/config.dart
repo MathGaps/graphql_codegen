@@ -31,9 +31,33 @@ class GraphQLCodegenConfigScalar {
 }
 
 @JsonSerializable()
+class GraphQLCodegenConfigEnum {
+  final String? type;
+  final String? import;
+  final String? fromJsonFunctionName;
+  final String? toJsonFunctionName;
+  final String? fallbackEnumValue;
+
+  const GraphQLCodegenConfigEnum({
+    required this.type,
+    required this.import,
+    required this.fromJsonFunctionName,
+    required this.toJsonFunctionName,
+    required this.fallbackEnumValue,
+  });
+
+  @override
+  factory GraphQLCodegenConfigEnum.fromJson(Map<String, dynamic> json) =>
+      _$GraphQLCodegenConfigEnumFromJson(json);
+
+  Map<String, dynamic> toJson() => _$GraphQLCodegenConfigEnumToJson(this);
+}
+
+@JsonSerializable()
 class GraphQLCodegenConfig {
   final Set<GraphQLCodegenConfigClient> clients;
   final Map<String, GraphQLCodegenConfigScalar> scalars;
+  final Map<String, GraphQLCodegenConfigEnum> enums;
   final bool addTypename;
   final String assetsPath;
   final List<String> scopes;
@@ -50,6 +74,7 @@ class GraphQLCodegenConfig {
     this.clients = const {},
     this.disableContextReplacement = false,
     this.scalars = const {},
+    this.enums = const {},
     this.addTypename = true,
     this.assetsPath = "lib/**{.graphql,.gql}",
     this.scopes = const ["**{.graphql,.gql}"],

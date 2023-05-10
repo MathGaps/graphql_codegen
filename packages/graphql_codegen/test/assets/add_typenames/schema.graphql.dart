@@ -3,7 +3,7 @@ import 'package:gql/ast.dart';
 class Fragment$FReport {
   Fragment$FReport({
     this.title,
-    required this.$__typename,
+    this.$__typename = 'Report',
   });
 
   factory Fragment$FReport.fromJson(Map<String, dynamic> json) {
@@ -94,7 +94,7 @@ class _CopyWithImpl$Fragment$FReport<TRes>
 
   final TRes Function(Fragment$FReport) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? title = _undefined,
@@ -156,7 +156,7 @@ class Query$Q {
     this.docsWihtoutTypename,
     this.docsWithAliasedTypename,
     this.docsWithFragment,
-    required this.$__typename,
+    this.$__typename = 'Query',
   });
 
   factory Query$Q.fromJson(Map<String, dynamic> json) {
@@ -388,7 +388,7 @@ class _CopyWithImpl$Query$Q<TRes> implements CopyWith$Query$Q<TRes> {
 
   final TRes Function(Query$Q) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? docsWithTypename = _undefined,
@@ -608,8 +608,17 @@ class Query$Q$docsWithTypename {
   Query$Q$docsWithTypename({required this.$__typename});
 
   factory Query$Q$docsWithTypename.fromJson(Map<String, dynamic> json) {
-    final l$$__typename = json['__typename'];
-    return Query$Q$docsWithTypename($__typename: (l$$__typename as String));
+    switch (json["__typename"] as String) {
+      case "Contract":
+        return Query$Q$docsWithTypename$$Contract.fromJson(json);
+
+      case "Report":
+        return Query$Q$docsWithTypename$$Report.fromJson(json);
+
+      default:
+        final l$$__typename = json['__typename'];
+        return Query$Q$docsWithTypename($__typename: (l$$__typename as String));
+    }
   }
 
   final String $__typename;
@@ -652,6 +661,47 @@ extension UtilityExtension$Query$Q$docsWithTypename
         this,
         (i) => i,
       );
+  _T when<_T>({
+    required _T Function(Query$Q$docsWithTypename$$Contract) contract,
+    required _T Function(Query$Q$docsWithTypename$$Report) report,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Contract":
+        return contract(this as Query$Q$docsWithTypename$$Contract);
+
+      case "Report":
+        return report(this as Query$Q$docsWithTypename$$Report);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Query$Q$docsWithTypename$$Contract)? contract,
+    _T Function(Query$Q$docsWithTypename$$Report)? report,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Contract":
+        if (contract != null) {
+          return contract(this as Query$Q$docsWithTypename$$Contract);
+        } else {
+          return orElse();
+        }
+
+      case "Report":
+        if (report != null) {
+          return report(this as Query$Q$docsWithTypename$$Report);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$Q$docsWithTypename<TRes> {
@@ -677,7 +727,7 @@ class _CopyWithImpl$Query$Q$docsWithTypename<TRes>
 
   final TRes Function(Query$Q$docsWithTypename) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? $__typename = _undefined}) =>
       _then(Query$Q$docsWithTypename(
@@ -695,6 +745,192 @@ class _CopyWithStubImpl$Query$Q$docsWithTypename<TRes>
   call({String? $__typename}) => _res;
 }
 
+class Query$Q$docsWithTypename$$Contract implements Query$Q$docsWithTypename {
+  Query$Q$docsWithTypename$$Contract({this.$__typename = 'Contract'});
+
+  factory Query$Q$docsWithTypename$$Contract.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    return Query$Q$docsWithTypename$$Contract(
+        $__typename: (l$$__typename as String));
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$Q$docsWithTypename$$Contract) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Q$docsWithTypename$$Contract
+    on Query$Q$docsWithTypename$$Contract {
+  CopyWith$Query$Q$docsWithTypename$$Contract<
+          Query$Q$docsWithTypename$$Contract>
+      get copyWith => CopyWith$Query$Q$docsWithTypename$$Contract(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Q$docsWithTypename$$Contract<TRes> {
+  factory CopyWith$Query$Q$docsWithTypename$$Contract(
+    Query$Q$docsWithTypename$$Contract instance,
+    TRes Function(Query$Q$docsWithTypename$$Contract) then,
+  ) = _CopyWithImpl$Query$Q$docsWithTypename$$Contract;
+
+  factory CopyWith$Query$Q$docsWithTypename$$Contract.stub(TRes res) =
+      _CopyWithStubImpl$Query$Q$docsWithTypename$$Contract;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Query$Q$docsWithTypename$$Contract<TRes>
+    implements CopyWith$Query$Q$docsWithTypename$$Contract<TRes> {
+  _CopyWithImpl$Query$Q$docsWithTypename$$Contract(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Q$docsWithTypename$$Contract _instance;
+
+  final TRes Function(Query$Q$docsWithTypename$$Contract) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Query$Q$docsWithTypename$$Contract(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$Q$docsWithTypename$$Contract<TRes>
+    implements CopyWith$Query$Q$docsWithTypename$$Contract<TRes> {
+  _CopyWithStubImpl$Query$Q$docsWithTypename$$Contract(this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+class Query$Q$docsWithTypename$$Report implements Query$Q$docsWithTypename {
+  Query$Q$docsWithTypename$$Report({this.$__typename = 'Report'});
+
+  factory Query$Q$docsWithTypename$$Report.fromJson(Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    return Query$Q$docsWithTypename$$Report(
+        $__typename: (l$$__typename as String));
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$Q$docsWithTypename$$Report) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Q$docsWithTypename$$Report
+    on Query$Q$docsWithTypename$$Report {
+  CopyWith$Query$Q$docsWithTypename$$Report<Query$Q$docsWithTypename$$Report>
+      get copyWith => CopyWith$Query$Q$docsWithTypename$$Report(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Q$docsWithTypename$$Report<TRes> {
+  factory CopyWith$Query$Q$docsWithTypename$$Report(
+    Query$Q$docsWithTypename$$Report instance,
+    TRes Function(Query$Q$docsWithTypename$$Report) then,
+  ) = _CopyWithImpl$Query$Q$docsWithTypename$$Report;
+
+  factory CopyWith$Query$Q$docsWithTypename$$Report.stub(TRes res) =
+      _CopyWithStubImpl$Query$Q$docsWithTypename$$Report;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Query$Q$docsWithTypename$$Report<TRes>
+    implements CopyWith$Query$Q$docsWithTypename$$Report<TRes> {
+  _CopyWithImpl$Query$Q$docsWithTypename$$Report(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Q$docsWithTypename$$Report _instance;
+
+  final TRes Function(Query$Q$docsWithTypename$$Report) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Query$Q$docsWithTypename$$Report(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$Q$docsWithTypename$$Report<TRes>
+    implements CopyWith$Query$Q$docsWithTypename$$Report<TRes> {
+  _CopyWithStubImpl$Query$Q$docsWithTypename$$Report(this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
 class Query$Q$docsWihtoutTypename {
   Query$Q$docsWihtoutTypename({
     this.title,
@@ -702,12 +938,21 @@ class Query$Q$docsWihtoutTypename {
   });
 
   factory Query$Q$docsWihtoutTypename.fromJson(Map<String, dynamic> json) {
-    final l$title = json['title'];
-    final l$$__typename = json['__typename'];
-    return Query$Q$docsWihtoutTypename(
-      title: (l$title as String?),
-      $__typename: (l$$__typename as String),
-    );
+    switch (json["__typename"] as String) {
+      case "Contract":
+        return Query$Q$docsWihtoutTypename$$Contract.fromJson(json);
+
+      case "Report":
+        return Query$Q$docsWihtoutTypename$$Report.fromJson(json);
+
+      default:
+        final l$title = json['title'];
+        final l$$__typename = json['__typename'];
+        return Query$Q$docsWihtoutTypename(
+          title: (l$title as String?),
+          $__typename: (l$$__typename as String),
+        );
+    }
   }
 
   final String? title;
@@ -763,6 +1008,47 @@ extension UtilityExtension$Query$Q$docsWihtoutTypename
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(Query$Q$docsWihtoutTypename$$Contract) contract,
+    required _T Function(Query$Q$docsWihtoutTypename$$Report) report,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Contract":
+        return contract(this as Query$Q$docsWihtoutTypename$$Contract);
+
+      case "Report":
+        return report(this as Query$Q$docsWihtoutTypename$$Report);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Query$Q$docsWihtoutTypename$$Contract)? contract,
+    _T Function(Query$Q$docsWihtoutTypename$$Report)? report,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Contract":
+        if (contract != null) {
+          return contract(this as Query$Q$docsWihtoutTypename$$Contract);
+        } else {
+          return orElse();
+        }
+
+      case "Report":
+        if (report != null) {
+          return report(this as Query$Q$docsWihtoutTypename$$Report);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$Q$docsWihtoutTypename<TRes> {
@@ -791,7 +1077,7 @@ class _CopyWithImpl$Query$Q$docsWihtoutTypename<TRes>
 
   final TRes Function(Query$Q$docsWihtoutTypename) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? title = _undefined,
@@ -808,6 +1094,258 @@ class _CopyWithImpl$Query$Q$docsWihtoutTypename<TRes>
 class _CopyWithStubImpl$Query$Q$docsWihtoutTypename<TRes>
     implements CopyWith$Query$Q$docsWihtoutTypename<TRes> {
   _CopyWithStubImpl$Query$Q$docsWihtoutTypename(this._res);
+
+  TRes _res;
+
+  call({
+    String? title,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$Q$docsWihtoutTypename$$Contract
+    implements Query$Q$docsWihtoutTypename {
+  Query$Q$docsWihtoutTypename$$Contract({
+    this.title,
+    this.$__typename = 'Contract',
+  });
+
+  factory Query$Q$docsWihtoutTypename$$Contract.fromJson(
+      Map<String, dynamic> json) {
+    final l$title = json['title'];
+    final l$$__typename = json['__typename'];
+    return Query$Q$docsWihtoutTypename$$Contract(
+      title: (l$title as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? title;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$title = title;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$title,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$Q$docsWihtoutTypename$$Contract) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Q$docsWihtoutTypename$$Contract
+    on Query$Q$docsWihtoutTypename$$Contract {
+  CopyWith$Query$Q$docsWihtoutTypename$$Contract<
+          Query$Q$docsWihtoutTypename$$Contract>
+      get copyWith => CopyWith$Query$Q$docsWihtoutTypename$$Contract(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Q$docsWihtoutTypename$$Contract<TRes> {
+  factory CopyWith$Query$Q$docsWihtoutTypename$$Contract(
+    Query$Q$docsWihtoutTypename$$Contract instance,
+    TRes Function(Query$Q$docsWihtoutTypename$$Contract) then,
+  ) = _CopyWithImpl$Query$Q$docsWihtoutTypename$$Contract;
+
+  factory CopyWith$Query$Q$docsWihtoutTypename$$Contract.stub(TRes res) =
+      _CopyWithStubImpl$Query$Q$docsWihtoutTypename$$Contract;
+
+  TRes call({
+    String? title,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Q$docsWihtoutTypename$$Contract<TRes>
+    implements CopyWith$Query$Q$docsWihtoutTypename$$Contract<TRes> {
+  _CopyWithImpl$Query$Q$docsWihtoutTypename$$Contract(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Q$docsWihtoutTypename$$Contract _instance;
+
+  final TRes Function(Query$Q$docsWihtoutTypename$$Contract) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? title = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Q$docsWihtoutTypename$$Contract(
+        title: title == _undefined ? _instance.title : (title as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Q$docsWihtoutTypename$$Contract<TRes>
+    implements CopyWith$Query$Q$docsWihtoutTypename$$Contract<TRes> {
+  _CopyWithStubImpl$Query$Q$docsWihtoutTypename$$Contract(this._res);
+
+  TRes _res;
+
+  call({
+    String? title,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$Q$docsWihtoutTypename$$Report
+    implements Query$Q$docsWihtoutTypename {
+  Query$Q$docsWihtoutTypename$$Report({
+    this.title,
+    this.$__typename = 'Report',
+  });
+
+  factory Query$Q$docsWihtoutTypename$$Report.fromJson(
+      Map<String, dynamic> json) {
+    final l$title = json['title'];
+    final l$$__typename = json['__typename'];
+    return Query$Q$docsWihtoutTypename$$Report(
+      title: (l$title as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? title;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$title = title;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$title,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$Q$docsWihtoutTypename$$Report) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Q$docsWihtoutTypename$$Report
+    on Query$Q$docsWihtoutTypename$$Report {
+  CopyWith$Query$Q$docsWihtoutTypename$$Report<
+          Query$Q$docsWihtoutTypename$$Report>
+      get copyWith => CopyWith$Query$Q$docsWihtoutTypename$$Report(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Q$docsWihtoutTypename$$Report<TRes> {
+  factory CopyWith$Query$Q$docsWihtoutTypename$$Report(
+    Query$Q$docsWihtoutTypename$$Report instance,
+    TRes Function(Query$Q$docsWihtoutTypename$$Report) then,
+  ) = _CopyWithImpl$Query$Q$docsWihtoutTypename$$Report;
+
+  factory CopyWith$Query$Q$docsWihtoutTypename$$Report.stub(TRes res) =
+      _CopyWithStubImpl$Query$Q$docsWihtoutTypename$$Report;
+
+  TRes call({
+    String? title,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Q$docsWihtoutTypename$$Report<TRes>
+    implements CopyWith$Query$Q$docsWihtoutTypename$$Report<TRes> {
+  _CopyWithImpl$Query$Q$docsWihtoutTypename$$Report(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Q$docsWihtoutTypename$$Report _instance;
+
+  final TRes Function(Query$Q$docsWihtoutTypename$$Report) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? title = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Q$docsWihtoutTypename$$Report(
+        title: title == _undefined ? _instance.title : (title as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Q$docsWihtoutTypename$$Report<TRes>
+    implements CopyWith$Query$Q$docsWihtoutTypename$$Report<TRes> {
+  _CopyWithStubImpl$Query$Q$docsWihtoutTypename$$Report(this._res);
 
   TRes _res;
 
@@ -892,7 +1430,7 @@ class _CopyWithImpl$Query$Q$docsWithAliasedTypename<TRes>
 
   final TRes Function(Query$Q$docsWithAliasedTypename) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? $__typename = _undefined}) =>
       _then(Query$Q$docsWithAliasedTypename(
@@ -904,6 +1442,196 @@ class _CopyWithImpl$Query$Q$docsWithAliasedTypename<TRes>
 class _CopyWithStubImpl$Query$Q$docsWithAliasedTypename<TRes>
     implements CopyWith$Query$Q$docsWithAliasedTypename<TRes> {
   _CopyWithStubImpl$Query$Q$docsWithAliasedTypename(this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+class Query$Q$docsWithAliasedTypename$$Contract
+    implements Query$Q$docsWithAliasedTypename {
+  Query$Q$docsWithAliasedTypename$$Contract({this.$__typename});
+
+  factory Query$Q$docsWithAliasedTypename$$Contract.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    return Query$Q$docsWithAliasedTypename$$Contract(
+        $__typename: (l$$__typename as String?));
+  }
+
+  final String? $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$Q$docsWithAliasedTypename$$Contract) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Q$docsWithAliasedTypename$$Contract
+    on Query$Q$docsWithAliasedTypename$$Contract {
+  CopyWith$Query$Q$docsWithAliasedTypename$$Contract<
+          Query$Q$docsWithAliasedTypename$$Contract>
+      get copyWith => CopyWith$Query$Q$docsWithAliasedTypename$$Contract(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Q$docsWithAliasedTypename$$Contract<TRes> {
+  factory CopyWith$Query$Q$docsWithAliasedTypename$$Contract(
+    Query$Q$docsWithAliasedTypename$$Contract instance,
+    TRes Function(Query$Q$docsWithAliasedTypename$$Contract) then,
+  ) = _CopyWithImpl$Query$Q$docsWithAliasedTypename$$Contract;
+
+  factory CopyWith$Query$Q$docsWithAliasedTypename$$Contract.stub(TRes res) =
+      _CopyWithStubImpl$Query$Q$docsWithAliasedTypename$$Contract;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Query$Q$docsWithAliasedTypename$$Contract<TRes>
+    implements CopyWith$Query$Q$docsWithAliasedTypename$$Contract<TRes> {
+  _CopyWithImpl$Query$Q$docsWithAliasedTypename$$Contract(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Q$docsWithAliasedTypename$$Contract _instance;
+
+  final TRes Function(Query$Q$docsWithAliasedTypename$$Contract) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Query$Q$docsWithAliasedTypename$$Contract(
+          $__typename: $__typename == _undefined
+              ? _instance.$__typename
+              : ($__typename as String?)));
+}
+
+class _CopyWithStubImpl$Query$Q$docsWithAliasedTypename$$Contract<TRes>
+    implements CopyWith$Query$Q$docsWithAliasedTypename$$Contract<TRes> {
+  _CopyWithStubImpl$Query$Q$docsWithAliasedTypename$$Contract(this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+class Query$Q$docsWithAliasedTypename$$Report
+    implements Query$Q$docsWithAliasedTypename {
+  Query$Q$docsWithAliasedTypename$$Report({this.$__typename});
+
+  factory Query$Q$docsWithAliasedTypename$$Report.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    return Query$Q$docsWithAliasedTypename$$Report(
+        $__typename: (l$$__typename as String?));
+  }
+
+  final String? $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$Q$docsWithAliasedTypename$$Report) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Q$docsWithAliasedTypename$$Report
+    on Query$Q$docsWithAliasedTypename$$Report {
+  CopyWith$Query$Q$docsWithAliasedTypename$$Report<
+          Query$Q$docsWithAliasedTypename$$Report>
+      get copyWith => CopyWith$Query$Q$docsWithAliasedTypename$$Report(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Q$docsWithAliasedTypename$$Report<TRes> {
+  factory CopyWith$Query$Q$docsWithAliasedTypename$$Report(
+    Query$Q$docsWithAliasedTypename$$Report instance,
+    TRes Function(Query$Q$docsWithAliasedTypename$$Report) then,
+  ) = _CopyWithImpl$Query$Q$docsWithAliasedTypename$$Report;
+
+  factory CopyWith$Query$Q$docsWithAliasedTypename$$Report.stub(TRes res) =
+      _CopyWithStubImpl$Query$Q$docsWithAliasedTypename$$Report;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Query$Q$docsWithAliasedTypename$$Report<TRes>
+    implements CopyWith$Query$Q$docsWithAliasedTypename$$Report<TRes> {
+  _CopyWithImpl$Query$Q$docsWithAliasedTypename$$Report(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Q$docsWithAliasedTypename$$Report _instance;
+
+  final TRes Function(Query$Q$docsWithAliasedTypename$$Report) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Query$Q$docsWithAliasedTypename$$Report(
+          $__typename: $__typename == _undefined
+              ? _instance.$__typename
+              : ($__typename as String?)));
+}
+
+class _CopyWithStubImpl$Query$Q$docsWithAliasedTypename$$Report<TRes>
+    implements CopyWith$Query$Q$docsWithAliasedTypename$$Report<TRes> {
+  _CopyWithStubImpl$Query$Q$docsWithAliasedTypename$$Report(this._res);
 
   TRes _res;
 
@@ -967,6 +1695,47 @@ extension UtilityExtension$Query$Q$docsWithFragment
         this,
         (i) => i,
       );
+  _T when<_T>({
+    required _T Function(Query$Q$docsWithFragment$$Contract) contract,
+    required _T Function(Query$Q$docsWithFragment$$Report) report,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Contract":
+        return contract(this as Query$Q$docsWithFragment$$Contract);
+
+      case "Report":
+        return report(this as Query$Q$docsWithFragment$$Report);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Query$Q$docsWithFragment$$Contract)? contract,
+    _T Function(Query$Q$docsWithFragment$$Report)? report,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Contract":
+        if (contract != null) {
+          return contract(this as Query$Q$docsWithFragment$$Contract);
+        } else {
+          return orElse();
+        }
+
+      case "Report":
+        if (report != null) {
+          return report(this as Query$Q$docsWithFragment$$Report);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$Q$docsWithFragment<TRes> {
@@ -992,7 +1761,7 @@ class _CopyWithImpl$Query$Q$docsWithFragment<TRes>
 
   final TRes Function(Query$Q$docsWithFragment) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? $__typename = _undefined}) =>
       _then(Query$Q$docsWithFragment(
@@ -1012,40 +1781,40 @@ class _CopyWithStubImpl$Query$Q$docsWithFragment<TRes>
 
 class Query$Q$docsWithFragment$$Contract implements Query$Q$docsWithFragment {
   Query$Q$docsWithFragment$$Contract({
-    required this.$__typename,
     this.title,
+    this.$__typename = 'Contract',
   });
 
   factory Query$Q$docsWithFragment$$Contract.fromJson(
       Map<String, dynamic> json) {
-    final l$$__typename = json['__typename'];
     final l$title = json['title'];
+    final l$$__typename = json['__typename'];
     return Query$Q$docsWithFragment$$Contract(
-      $__typename: (l$$__typename as String),
       title: (l$title as String?),
+      $__typename: (l$$__typename as String),
     );
   }
 
-  final String $__typename;
-
   final String? title;
+
+  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
-    final l$$__typename = $__typename;
     final l$title = title;
+    final l$$__typename = $__typename;
     return Object.hashAll([
-      l$$__typename,
       l$title,
+      l$$__typename,
     ]);
   }
 
@@ -1058,14 +1827,14 @@ class Query$Q$docsWithFragment$$Contract implements Query$Q$docsWithFragment {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -1092,8 +1861,8 @@ abstract class CopyWith$Query$Q$docsWithFragment$$Contract<TRes> {
       _CopyWithStubImpl$Query$Q$docsWithFragment$$Contract;
 
   TRes call({
-    String? $__typename,
     String? title,
+    String? $__typename,
   });
 }
 
@@ -1108,17 +1877,17 @@ class _CopyWithImpl$Query$Q$docsWithFragment$$Contract<TRes>
 
   final TRes Function(Query$Q$docsWithFragment$$Contract) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? $__typename = _undefined,
     Object? title = _undefined,
+    Object? $__typename = _undefined,
   }) =>
       _then(Query$Q$docsWithFragment$$Contract(
+        title: title == _undefined ? _instance.title : (title as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
-        title: title == _undefined ? _instance.title : (title as String?),
       ));
 }
 
@@ -1129,8 +1898,8 @@ class _CopyWithStubImpl$Query$Q$docsWithFragment$$Contract<TRes>
   TRes _res;
 
   call({
-    String? $__typename,
     String? title,
+    String? $__typename,
   }) =>
       _res;
 }
@@ -1138,39 +1907,39 @@ class _CopyWithStubImpl$Query$Q$docsWithFragment$$Contract<TRes>
 class Query$Q$docsWithFragment$$Report
     implements Fragment$FReport, Query$Q$docsWithFragment {
   Query$Q$docsWithFragment$$Report({
-    required this.$__typename,
     this.title,
+    this.$__typename = 'Report',
   });
 
   factory Query$Q$docsWithFragment$$Report.fromJson(Map<String, dynamic> json) {
-    final l$$__typename = json['__typename'];
     final l$title = json['title'];
+    final l$$__typename = json['__typename'];
     return Query$Q$docsWithFragment$$Report(
-      $__typename: (l$$__typename as String),
       title: (l$title as String?),
+      $__typename: (l$$__typename as String),
     );
   }
 
-  final String $__typename;
-
   final String? title;
+
+  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
-    final l$$__typename = $__typename;
     final l$title = title;
+    final l$$__typename = $__typename;
     return Object.hashAll([
-      l$$__typename,
       l$title,
+      l$$__typename,
     ]);
   }
 
@@ -1183,14 +1952,14 @@ class Query$Q$docsWithFragment$$Report
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -1216,8 +1985,8 @@ abstract class CopyWith$Query$Q$docsWithFragment$$Report<TRes> {
       _CopyWithStubImpl$Query$Q$docsWithFragment$$Report;
 
   TRes call({
-    String? $__typename,
     String? title,
+    String? $__typename,
   });
 }
 
@@ -1232,17 +2001,17 @@ class _CopyWithImpl$Query$Q$docsWithFragment$$Report<TRes>
 
   final TRes Function(Query$Q$docsWithFragment$$Report) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? $__typename = _undefined,
     Object? title = _undefined,
+    Object? $__typename = _undefined,
   }) =>
       _then(Query$Q$docsWithFragment$$Report(
+        title: title == _undefined ? _instance.title : (title as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
-        title: title == _undefined ? _instance.title : (title as String?),
       ));
 }
 
@@ -1253,13 +2022,13 @@ class _CopyWithStubImpl$Query$Q$docsWithFragment$$Report<TRes>
   TRes _res;
 
   call({
-    String? $__typename,
     String? title,
+    String? $__typename,
   }) =>
       _res;
 }
 
-const possibleTypesMap = {
+const possibleTypesMap = <String, Set<String>>{
   'Document': {
     'Contract',
     'Report',

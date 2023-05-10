@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
@@ -78,7 +79,7 @@ class _CopyWithImpl$Variables$Fragment$NameNode<TRes>
 
   final TRes Function(Variables$Fragment$NameNode) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? setting = _undefined}) =>
       _then(Variables$Fragment$NameNode._({
@@ -100,7 +101,7 @@ class _CopyWithStubImpl$Variables$Fragment$NameNode<TRes>
 class Fragment$NameNode {
   Fragment$NameNode({
     this.name,
-    required this.$__typename,
+    this.$__typename = 'Node',
   });
 
   factory Fragment$NameNode.fromJson(Map<String, dynamic> json) {
@@ -191,7 +192,7 @@ class _CopyWithImpl$Fragment$NameNode<TRes>
 
   final TRes Function(Fragment$NameNode) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? name = _undefined,
@@ -366,7 +367,7 @@ class _CopyWithImpl$Variables$Query$Q<TRes>
 
   final TRes Function(Variables$Query$Q) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? setting = _undefined}) => _then(Variables$Query$Q._({
         ..._instance._$data,
@@ -387,7 +388,7 @@ class _CopyWithStubImpl$Variables$Query$Q<TRes>
 class Query$Q {
   Query$Q({
     this.node,
-    required this.$__typename,
+    this.$__typename = 'Query',
   });
 
   factory Query$Q.fromJson(Map<String, dynamic> json) {
@@ -478,7 +479,7 @@ class _CopyWithImpl$Query$Q<TRes> implements CopyWith$Query$Q<TRes> {
 
   final TRes Function(Query$Q) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? node = _undefined,
@@ -561,6 +562,10 @@ const documentNodeQueryQ = DocumentNode(definitions: [
   fragmentDefinitionNameNode,
 ]);
 Query$Q _parserFn$Query$Q(Map<String, dynamic> data) => Query$Q.fromJson(data);
+typedef OnQueryComplete$Query$Q = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$Q?,
+);
 
 class Options$Query$Q extends graphql.QueryOptions<Query$Q> {
   Options$Query$Q({
@@ -570,20 +575,41 @@ class Options$Query$Q extends graphql.QueryOptions<Query$Q> {
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$Q? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$Q? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$Q(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryQ,
           parserFn: _parserFn$Query$Q,
         );
+
+  final OnQueryComplete$Query$Q? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$Q extends graphql.WatchQueryOptions<Query$Q> {
@@ -594,6 +620,7 @@ class WatchOptions$Query$Q extends graphql.WatchQueryOptions<Query$Q> {
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$Q? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -605,7 +632,7 @@ class WatchOptions$Query$Q extends graphql.WatchQueryOptions<Query$Q> {
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryQ,
           pollInterval: pollInterval,
@@ -660,4 +687,4 @@ extension ClientExtension$Query$Q on graphql.GraphQLClient {
   }
 }
 
-const possibleTypesMap = {};
+const possibleTypesMap = <String, Set<String>>{};

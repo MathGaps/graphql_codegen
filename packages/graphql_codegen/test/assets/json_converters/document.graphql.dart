@@ -8,7 +8,7 @@ class Query$Q {
     this.mInt,
     required this.dt,
     this.mDt,
-    required this.$__typename,
+    this.$__typename = 'Query',
   });
 
   factory Query$Q.fromJson(Map<String, dynamic> json) {
@@ -166,7 +166,7 @@ class _CopyWithImpl$Query$Q<TRes> implements CopyWith$Query$Q<TRes> {
 
   final TRes Function(Query$Q) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? mFloat = _undefined,
@@ -269,4 +269,4 @@ const documentNodeQueryQ = DocumentNode(definitions: [
     ]),
   ),
 ]);
-const possibleTypesMap = {};
+const possibleTypesMap = <String, Set<String>>{};
