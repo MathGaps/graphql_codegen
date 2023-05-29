@@ -1,3 +1,109 @@
+# 0.13.0
+- Upgrade `gql` version.
+
+# 0.12.2
+
+- Support `include` and `skip` directives on fields (not fragments yet)
+
+# 0.12.1
+
+- Add `when` and `maybeWhen` utility methods!
+
+# 0.12.0
+
+- Update documentation
+- Major performance improvement with many fragments
+- Support custom enum fallback values
+- Add `onError` and `onComplete` callbacks to query options.
+- Add `typedOptimisticResult` as an typed alternative to `optimistcResult`
+- Update dev deps.
+- Improve performance a bit.
+- Provide default typename parameter to constructor
+- Support schema extensions.
+- Fix bug in generating wrong json methods.
+- Fix absolute output dir paths on windows.
+- Add built-in types to keywords.
+- Add custom enums.
+- Update SDK version and required code-builder version.
+- Remove operation definitions without name before codegen.
+- Fix missing serializers for concrete types on fragments
+- Bump gql versions
+- Fix naming separator issue
+
+# 0.12.0-beta.18
+
+- Update documentation
+
+# 0.12.0-beta.17
+
+- Major performance improvement with many fragments
+
+# 0.12.0-beta.16
+
+- Support custom enum fallback values
+
+# 0.12.0-beta.15
+
+- Fix `onComplete`
+
+# 0.12.0-beta.14
+
+- Add `onError` and `onComplete` callbacks to query options.
+- Add `typedOptimisticResult` as an typed alternative to `optimistcResult`
+
+# 0.12.0-beta.13
+
+- Update dev deps.
+
+# 0.12.0-beta.12
+
+- Cache schema parsing, further improving performance.
+
+# 0.12.0-beta.11
+
+- Improve performance a bit.
+
+# 0.12.0-beta.10
+
+- Provide default typename parameter to constructor
+
+# 0.12.0-beta.9
+
+- Support schema extensions.
+
+# 0.12.0-beta.8
+
+- Fix bug in generating wrong json methods.
+
+# 0.12.0-beta.7
+
+- Fix absolute output dir paths on windows.
+
+# 0.12.0-beta.6
+
+- Add built-in types to keywords.
+
+# 0.12.0-beta.5
+
+- Add custom enums.
+
+# 0.12.0-beta.4
+
+- Update SDK version and required code-builder version.
+
+# 0.12.0-beta.3
+
+- Remove operation definitions without name before codegen.
+
+# 0.12.0-beta.2
+
+- Fix missing serializers for concrete types on fragments
+
+# 0.12.0-beta.1
+
+- Bump gql versions
+- Fix naming separator issue
+
 # 0.11.2
 
 * Fix broken `toJson` on fragment spreads.
