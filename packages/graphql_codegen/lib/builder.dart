@@ -68,7 +68,7 @@ class GraphQLBuilder extends Builder {
         .map((event) => MapEntry(event.key, transform(config, event.value)))
         .toList();
 
-    final scopeGlob = Glob(scope);
+    final scopeGlob = Glob(config.externalSchemaScope ?? scope);
     final externalAssets = config.externalAssets;
     for (final p in externalAssets) {
       Future<void> addAssetFileAsEntry(LoadedFileAsset file) async {

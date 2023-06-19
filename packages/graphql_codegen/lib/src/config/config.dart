@@ -45,6 +45,7 @@ class GraphQLCodegenConfig {
   final bool disableContextReplacement;
   final List<String> clientDirectives;
   final List<String> externalAssets;
+  final String? externalSchemaScope;
 
   GraphQLCodegenConfig({
     this.clients = const {},
@@ -60,6 +61,7 @@ class GraphQLCodegenConfig {
     this.outputDirectory = '.',
     this.clientDirectives = const [],
     this.externalAssets = const [],
+    this.externalSchemaScope,
   });
 
   @override

@@ -50,6 +50,7 @@ GraphQLCodegenConfig _$GraphQLCodegenConfigFromJson(Map<String, dynamic> json) =
               const [],
       externalAssets:
           (json['externalAssets'] as List<dynamic>?)?.map((e) => e as String).toList() ?? const [],
+      externalSchemaScope: json['externalSchemaScope'] as String?,
     );
 
 Map<String, dynamic> _$GraphQLCodegenConfigToJson(GraphQLCodegenConfig instance) =>
@@ -67,6 +68,7 @@ Map<String, dynamic> _$GraphQLCodegenConfigToJson(GraphQLCodegenConfig instance)
       'disableContextReplacement': instance.disableContextReplacement,
       'clientDirectives': instance.clientDirectives,
       'externalAssets': instance.externalAssets,
+      'externalSchemaScope': instance.externalSchemaScope,
     };
 
 const _$GraphQLCodegenConfigClientEnumMap = {
