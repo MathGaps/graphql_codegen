@@ -6,8 +6,7 @@ part of 'config.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GraphQLCodegenConfigScalar _$GraphQLCodegenConfigScalarFromJson(
-        Map<String, dynamic> json) =>
+GraphQLCodegenConfigScalar _$GraphQLCodegenConfigScalarFromJson(Map<String, dynamic> json) =>
     GraphQLCodegenConfigScalar(
       type: json['type'] as String,
       import: json['import'] as String?,
@@ -15,8 +14,7 @@ GraphQLCodegenConfigScalar _$GraphQLCodegenConfigScalarFromJson(
       toJsonFunctionName: json['toJsonFunctionName'] as String?,
     );
 
-Map<String, dynamic> _$GraphQLCodegenConfigScalarToJson(
-        GraphQLCodegenConfigScalar instance) =>
+Map<String, dynamic> _$GraphQLCodegenConfigScalarToJson(GraphQLCodegenConfigScalar instance) =>
     <String, dynamic>{
       'type': instance.type,
       'import': instance.import,
@@ -24,51 +22,39 @@ Map<String, dynamic> _$GraphQLCodegenConfigScalarToJson(
       'toJsonFunctionName': instance.toJsonFunctionName,
     };
 
-GraphQLCodegenConfig _$GraphQLCodegenConfigFromJson(
-        Map<String, dynamic> json) =>
+GraphQLCodegenConfig _$GraphQLCodegenConfigFromJson(Map<String, dynamic> json) =>
     GraphQLCodegenConfig(
       clients: (json['clients'] as List<dynamic>?)
               ?.map((e) => $enumDecode(_$GraphQLCodegenConfigClientEnumMap, e))
               .toSet() ??
           const {},
-      disableContextReplacement:
-          json['disableContextReplacement'] as bool? ?? false,
+      disableContextReplacement: json['disableContextReplacement'] as bool? ?? false,
       scalars: (json['scalars'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k,
-                GraphQLCodegenConfigScalar.fromJson(e as Map<String, dynamic>)),
+            (k, e) => MapEntry(k, GraphQLCodegenConfigScalar.fromJson(e as Map<String, dynamic>)),
           ) ??
           const {},
       addTypename: json['addTypename'] as bool? ?? true,
       assetsPath: json['assetsPath'] as String? ?? "lib/**{.graphql,.gql}",
-      scopes: (json['scopes'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
+      scopes: (json['scopes'] as List<dynamic>?)?.map((e) => e as String).toList() ??
           const ["**{.graphql,.gql}"],
       addTypenameExcludedPaths:
-          (json['addTypenameExcludedPaths'] as List<dynamic>?)
-                  ?.map((e) => e as String)
-                  .toList() ??
+          (json['addTypenameExcludedPaths'] as List<dynamic>?)?.map((e) => e as String).toList() ??
               const [],
       generatedFileHeader: json['generatedFileHeader'] as String? ?? "",
       namingSeparator: json['namingSeparator'] as String? ?? r"$",
-      extraKeywords: (json['extraKeywords'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
+      extraKeywords:
+          (json['extraKeywords'] as List<dynamic>?)?.map((e) => e as String).toList() ?? const [],
       outputDirectory: json['outputDirectory'] as String? ?? '.',
-      clientDirectives: (json['clientDirectives'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
-      externalSchema: json['externalSchema'] as String?,
+      clientDirectives:
+          (json['clientDirectives'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              const [],
+      externalAssets:
+          (json['externalAssets'] as List<dynamic>?)?.map((e) => e as String).toList() ?? const [],
     );
 
-Map<String, dynamic> _$GraphQLCodegenConfigToJson(
-        GraphQLCodegenConfig instance) =>
+Map<String, dynamic> _$GraphQLCodegenConfigToJson(GraphQLCodegenConfig instance) =>
     <String, dynamic>{
-      'clients': instance.clients
-          .map((e) => _$GraphQLCodegenConfigClientEnumMap[e]!)
-          .toList(),
+      'clients': instance.clients.map((e) => _$GraphQLCodegenConfigClientEnumMap[e]!).toList(),
       'scalars': instance.scalars,
       'addTypename': instance.addTypename,
       'assetsPath': instance.assetsPath,
@@ -80,7 +66,7 @@ Map<String, dynamic> _$GraphQLCodegenConfigToJson(
       'outputDirectory': instance.outputDirectory,
       'disableContextReplacement': instance.disableContextReplacement,
       'clientDirectives': instance.clientDirectives,
-      'externalSchema': instance.externalSchema,
+      'externalAssets': instance.externalAssets,
     };
 
 const _$GraphQLCodegenConfigClientEnumMap = {

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:build/build.dart';
 import 'package:built_collection/built_collection.dart';
@@ -67,16 +68,45 @@ class GraphQLBuilder extends Builder {
         .map((event) => MapEntry(event.key, transform(config, event.value)))
         .toList();
 
-    if (config.externalSchema != null) {
-      final file = await loadPackageFileAsAsset(config.externalSchema!);
-      entries.add(
-        MapEntry(
-          AssetId('package:${file.assetId.package}', file.assetId.path),
-          parseString(
-            await file.file.readAsString(),
-          ),
-        ),
-      );
+    final scopeGlob = Glob(scope);
+    final externalAssets = config.externalAssets;
+    for (final p in externalAssets) {
+      Future<void> addAssetFileAsEntry(LoadedFileAsset file) async {
+        final package = 'package:${file.assetId.package}';
+        final targetPath = file.file.path;
+        final isDirectory = FileSystemEntity.isDirectorySync(targetPath);
+        if (isDirectory) {
+          final dir = Directory(targetPath);
+          final files = dir.listSync(recursive: true).where((f) => scopeGlob.matches(f.path));
+          for (final f in files) {
+            final filePath = '${file.assetId.path}/${path.relative(f.path, from: targetPath)}';
+            entries.add(
+              MapEntry(
+                AssetId(
+                  package,
+                  filePath,
+                ),
+                parseString(
+                  await File(f.path).readAsString(),
+                ),
+              ),
+            );
+          }
+        } else {
+          if (scopeGlob.matches(targetPath)) {
+            final filePath = file.assetId.path;
+            entries.add(
+              MapEntry(
+                AssetId(package, filePath),
+                parseString(await file.file.readAsString()),
+              ),
+            );
+          }
+        }
+      }
+
+      final file = await loadPackageFileAsAsset(p);
+      await addAssetFileAsEntry(file);
     }
 
     final result = await generate<AssetId>(
