@@ -21,7 +21,7 @@ dependencies:
   gql_code_builder: ^0.7.1
   recase: ^4.0.0
   json_annotation: ^4.7.0
-  package_file_loader: ^0.2.0
+  package_file_loader: ^0.3.0
 
 dev_dependencies:
   test: ^1.17.4

@@ -429,10 +429,10 @@ packages:
     dependency: "direct main"
     description:
       name: package_file_loader
-      sha256: "1cd2bb4b03ec4710470a84897c295dc4dcceb0329a9167c41a1c7dfd96fd9f7b"
+      sha256: "892bcb078bbc768d9efe897af4ca7a0fd4dd892fe58a2d41b6c4d3a3e42961dd"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
+    version: "0.3.0"
   path:
     dependency: "direct main"
     description:
