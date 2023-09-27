@@ -49,14 +49,14 @@ class GraphQLBuilder extends Builder {
   @override
   FutureOr<void> build(BuildStep buildStep) async {
     final scope = (config.scopes).whereType<String?>().firstWhere(
-          (element) => element != null && Glob(element).matches(buildStep.inputId.path),
+          (element) => element != null && _osAgnosticGlob(element).matches(buildStep.inputId.path),
           orElse: () => null,
         );
     if (scope == null) {
       return;
     }
-    final assets = buildStep.findAssets(Glob(scope));
-    final assetsPathGlob = Glob(config.assetsPath);
+    final assets = buildStep.findAssets(_osAgnosticGlob(scope));
+    final assetsPathGlob = _osAgnosticGlob(config.assetsPath);
     final entries = await assets
         .where((asset) => assetsPathGlob.matches(asset.path))
         .asyncMap(
@@ -68,16 +68,24 @@ class GraphQLBuilder extends Builder {
         .map((event) => MapEntry(event.key, transform(config, event.value)))
         .toList();
 
-    final scopeGlob = Glob(config.scopes.length == 1 ? config.externalSchemaScope! : scope);
+    final scopeGlob =
+        _osAgnosticGlob(config.scopes.length == 1 ? config.externalSchemaScope! : scope);
     final externalAssets = config.externalAssets;
     for (final p in externalAssets) {
       Future<void> addAssetFileAsEntry(LoadedFileAsset file) async {
         final package = 'package:${file.assetId.package}';
-        final targetPath = file.file.path;
+        final targetPath = file.file.path.replaceAll('\\', '/');
         final isDirectory = FileSystemEntity.isDirectorySync(targetPath);
         if (isDirectory) {
           final dir = Directory(targetPath);
-          final files = dir.listSync(recursive: true).where((f) => scopeGlob.matches(f.path));
+          final files = dir.listSync(recursive: true).where((f) {
+            if (Platform.isWindows) {
+              final effGlob = Glob(scopeGlob.pattern.split('/').last);
+              return effGlob.matches(path.basename(f.path));
+            } else {
+              return scopeGlob.matches(f.path);
+            }
+          });
           for (final f in files) {
             final filePath = '${file.assetId.path}/${path.relative(f.path, from: targetPath)}';
             entries.add(
@@ -95,13 +103,14 @@ class GraphQLBuilder extends Builder {
         } else {
           if (scopeGlob.matches(targetPath)) {
             final filePath = file.assetId.path;
+
             entries.add(
               MapEntry(
                 AssetId(package, filePath),
                 parseString(await file.file.readAsString()),
               ),
             );
-          }
+          } else {}
         }
       }
 
@@ -187,4 +196,7 @@ class GraphQLBuilder extends Builder {
       ],
     };
   }
+
+  Glob _osAgnosticGlob(String scope) =>
+      Glob(scope.startsWith('/') ? scope.replaceFirst('/', Platform.isWindows ? '' : '/') : scope);
 }
