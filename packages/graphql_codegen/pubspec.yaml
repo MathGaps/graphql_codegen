@@ -8,7 +8,7 @@ homepage: https://github.com/heftapp/graphql_codegen/tree/main/packages/graphql_
 repository: https://github.com/heftapp/graphql_codegen/tree/main/packages/graphql_codegen
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   gql: ^1.0.0
@@ -18,15 +18,15 @@ dependencies:
   dart_style: ^2.0.1
   built_collection: ^5.0.0
   path: ^1.8.0
-  gql_code_builder: ^0.7.1
+  gql_code_builder: ^0.13.0
   recase: ^4.0.0
-  json_annotation: ^4.7.0
+  json_annotation: ^4.9.0
   package_file_loader: ^0.4.0
 
 dev_dependencies:
   test: ^1.17.4
   build_test: ^2.1.0
   build_runner: ^2.0.3
-  json_serializable: ^6.1.5
+  json_serializable: ^6.8.0
   graphql: ^5.2.0-beta.8
   lints: ^2.0.0
