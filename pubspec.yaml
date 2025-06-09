@@ -1,4 +1,6 @@
-name: graphql_codegen_workspace
+name: graphql_codegen
+version: 0.0.1
+publish_to: https://pub.tutero.dev
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
