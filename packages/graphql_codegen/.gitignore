@@ -1,2 +1,5 @@
 /generator
 /test/**/*.expected
+
+# FVM Version Cache
+.fvm/
