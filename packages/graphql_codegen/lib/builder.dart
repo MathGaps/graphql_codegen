@@ -78,13 +78,9 @@ class GraphQLBuilder extends Builder {
         final isDirectory = FileSystemEntity.isDirectorySync(targetPath);
         if (isDirectory) {
           final dir = Directory(targetPath);
+          final effGlob = Glob(scopeGlob.pattern.split('/').last);
           final files = dir.listSync(recursive: true).where((f) {
-            if (Platform.isWindows) {
-              final effGlob = Glob(scopeGlob.pattern.split('/').last);
-              return effGlob.matches(path.basename(f.path));
-            } else {
-              return scopeGlob.matches(f.path);
-            }
+            return effGlob.matches(path.basename(f.path));
           });
           for (final f in files) {
             final filePath = '${file.assetId.path}/${path.relative(f.path, from: targetPath)}';
@@ -101,7 +97,8 @@ class GraphQLBuilder extends Builder {
             );
           }
         } else {
-          if (scopeGlob.matches(targetPath)) {
+          final effGlob = Glob(scopeGlob.pattern.split('/').last);
+          if (effGlob.matches(path.basename(targetPath))) {
             final filePath = file.assetId.path;
 
             entries.add(
@@ -198,5 +195,5 @@ class GraphQLBuilder extends Builder {
   }
 
   Glob _osAgnosticGlob(String scope) =>
-      Glob(scope.startsWith('/') ? scope.replaceFirst('/', Platform.isWindows ? '' : '/') : scope);
+      Glob(scope.startsWith('/') ? scope.replaceFirst('/', '') : scope);
 }

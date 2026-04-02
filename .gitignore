@@ -24,3 +24,5 @@ doc/api/
 
 pubspec_overrides.yaml.DS_Store
 .DS_Store
+packages/graphql_codegen/.claude/settings.local.json
+packages/graphql_codegen/.vscode/settings.json
